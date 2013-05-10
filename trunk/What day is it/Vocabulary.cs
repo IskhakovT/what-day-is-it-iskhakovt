@@ -91,16 +91,26 @@ namespace What_day_is_it
             return "Я помню, когда у моей девушки день рождения";
         }
 
-        public static String Analize(DateInfo.Warning warning)
+        public static String Analyse(DateInfo.Warning warning)
         {
             switch (warning)
             {
-                case DateInfo.Warning.DivHundred:
-                    return "Это число делится на 100.\n";
+                case DateInfo.Warning.DivBillion:
+                    return "Это число делится на миллиард.\n";
+                case DateInfo.Warning.DivHundredMillion:
+                    return "Это число делится на сто милионов.\n";
+                case DateInfo.Warning.DivTenMillion:
+                    return "Это число делится на десять милионов.\n";
+                case DateInfo.Warning.DivMillion:
+                    return "Это число делится на миллион.\n";
+                case DateInfo.Warning.DivHundredThousand:
+                    return "Это число делится на сто тысяч.\n";
                 case DateInfo.Warning.DivTenThousand:
-                    return "Это число делится на 10000.\n";
+                    return "Это число делится на десять тысяч.\n";
                 case DateInfo.Warning.DivThousand:
-                    return "Это число делится на 1000.\n";
+                    return "Это число делится на тысячу.\n";
+                case DateInfo.Warning.DivHundred:
+                    return "Это число делится на сто.\n";
                 case DateInfo.Warning.EqualSymbols:
                     return "Это число состоит из одинаковых цифр.\n";
                 case DateInfo.Warning.Symmetric:
@@ -218,7 +228,7 @@ namespace What_day_is_it
         {
             if (Default.Sex)
             {
-                return "У тебя сегодня появилась девувшка!\n                    Поздравляю!!!\n";
+                return "У тебя сегодня появилась девувшка!\n                   Поздравляю!!!\n";
             }
             else
             {
@@ -450,22 +460,22 @@ namespace What_day_is_it
                     result += "день победы.";
                     break;
                 case Holidays.HolidayType.FirstOfMay:
-                    result += "праздник весны и труда."; 
+                    result += "праздник весны и труда.";
                     break;
                 case Holidays.HolidayType.MenDay:
-                    result += "день защитника Отечества."; 
+                    result += "день защитника Отечества.";
                     break;
                 case Holidays.HolidayType.NationalUnity:
-                    result += "день народного единства."; 
+                    result += "день народного единства.";
                     break;
                 case Holidays.HolidayType.NewYear:
-                    result += "новый год."; 
+                    result += "новый год.";
                     break;
                 case Holidays.HolidayType.ValentineDay:
-                    result += "день святого Валентина."; 
+                    result += "день святого Валентина.";
                     break;
                 case Holidays.HolidayType.WomenDay:
-                    result += "международный женский день."; 
+                    result += "международный женский день.";
                     break;
             }
 
