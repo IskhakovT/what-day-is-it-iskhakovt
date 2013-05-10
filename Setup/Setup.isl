@@ -4124,7 +4124,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{E9C320C1-95C9-4FC1-95F3-FA93ECC28306}</td></row>
 		<row><td>ISUSSignature</td><td>{A60B3C7B-6D6D-47CB-A57C-54AA71A54A37}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewProject</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewProject,viewISToday</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4503,7 +4503,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[DATABASEDIR]What day is it.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{B0A795C6-8A1E-4A96-9723-AA449F9E40F4}</td><td/></row>
 		<row><td>ProductName</td><td>Какой сегодня день</td><td/></row>
-		<row><td>ProductVersion</td><td>1.11.84</td><td/></row>
+		<row><td>ProductVersion</td><td>1.12.87</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
