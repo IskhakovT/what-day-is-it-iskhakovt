@@ -69,36 +69,6 @@ namespace What_day_is_it
                     result += Vocabulary.Analize(dayInfo) + Environment.NewLine;
                 }
 
-                /*
-
-                TimeSpan Difference = Date - Default.ImportantDate;
-
-                Int32 hoursDiff = Difference.Hours;
-                Warning hoursInfo = analyzeNum(hoursDiff);
-
-                if (hoursInfo != Warning.None)
-                {
-                    result += Vocabulary.countHoursTime(hoursDiff) + Environment.NewLine + Vocabulary.Analize(hoursInfo) + Environment.NewLine;
-                }
-
-                Int32 minutesDiff = Difference.Minutes;
-                Warning minutesInfo = analyzeNum(minutesDiff);
-
-                if (minutesInfo != Warning.None)
-                {
-                    result += Vocabulary.countMinutesTime(minutesDiff) + Environment.NewLine + Vocabulary.Analize(minutesInfo) + Environment.NewLine;
-                }
-
-                Int32 secondsDiff = Difference.Seconds;
-                Warning secondsInfo = analyzeNum(secondsDiff);
-
-                if (secondsInfo != Warning.None)
-                {
-                    result += Vocabulary.countSecondsTime(secondsDiff) + Environment.NewLine + Vocabulary.Analize(secondsInfo) + Environment.NewLine;
-                }
-                
-                */
-
                 if (Date != Default.ImportantDate && (Date - Default.ImportantDate).Days < maxDaysInMonth)
                 {
                     if (Date.Month == Default.ImportantDate.Month || (Date.Day < Default.ImportantDate.Day))
