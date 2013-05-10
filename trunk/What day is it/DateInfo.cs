@@ -24,7 +24,7 @@ namespace What_day_is_it
             {
                 String shortResult = Vocabulary.noInfo() + Environment.NewLine;
 
-                Holidays.HolidayEvent shortHolyday = Holidays.analizeHolyday(Date);
+                Holidays.HolidayEvent shortHolyday = Holidays.analyzeHolyday(Date);
 
                 if (shortHolyday.Holyday != Holidays.HolidayType.None)
                 {
@@ -62,7 +62,7 @@ namespace What_day_is_it
             {
                 result += getDateInfo(Date);
 
-                Warning info = analizeNum(Diff(Default.ImportantDate, Date));
+                Warning info = analyzeNum(Diff(Default.ImportantDate, Date));
 
                 if (info != Warning.None)
                 {
@@ -102,7 +102,7 @@ namespace What_day_is_it
                 }
             }
 
-            Holidays.HolidayEvent Holyday = Holidays.analizeHolyday(Date);
+            Holidays.HolidayEvent Holyday = Holidays.analyzeHolyday(Date);
 
             if (Holyday.Holyday != Holidays.HolidayType.None)
             {
@@ -209,7 +209,7 @@ namespace What_day_is_it
 
         public enum Warning { DivTenThousand, DivThousand, DivHundred, EqualSymbols, Symmetric, EqualDiff, None };
 
-        public static Warning analizeNum(Int32 num)
+        public static Warning analyzeNum(Int32 num)
         {
             if (!Default.ImportantDateExists || num < daysEnough)
             {

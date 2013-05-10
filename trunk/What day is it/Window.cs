@@ -109,7 +109,7 @@ namespace What_day_is_it
                     }
                 }
 
-                DateInfo.Warning info = DateInfo.analizeNum(DateInfo.Diff(Default.ImportantDate, Date));
+                DateInfo.Warning info = DateInfo.analyzeNum(DateInfo.Diff(Default.ImportantDate, Date));
 
                 if (info != DateInfo.Warning.None)
                 {
@@ -135,7 +135,7 @@ namespace What_day_is_it
                 }
             }
 
-            Holidays.HolidayEvent Holyday = Holidays.analizeHolyday(Date);
+            Holidays.HolidayEvent Holyday = Holidays.analyzeHolyday(Date);
 
             if (Holyday.Holyday != Holidays.HolidayType.None && Holyday.Today)
             {
