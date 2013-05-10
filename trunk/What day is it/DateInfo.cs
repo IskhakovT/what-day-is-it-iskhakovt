@@ -62,12 +62,42 @@ namespace What_day_is_it
             {
                 result += getDateInfo(Date);
 
-                Warning info = analyzeNum(Diff(Default.ImportantDate, Date));
+                Warning dayInfo = analyzeNum(Diff(Default.ImportantDate, Date));
 
-                if (info != Warning.None)
+                if (dayInfo != Warning.None)
                 {
-                    result += Vocabulary.Analize(info) + Environment.NewLine;
+                    result += Vocabulary.Analize(dayInfo) + Environment.NewLine;
                 }
+
+                /*
+
+                TimeSpan Difference = Date - Default.ImportantDate;
+
+                Int32 hoursDiff = Difference.Hours;
+                Warning hoursInfo = analyzeNum(hoursDiff);
+
+                if (hoursInfo != Warning.None)
+                {
+                    result += Vocabulary.countHoursTime(hoursDiff) + Environment.NewLine + Vocabulary.Analize(hoursInfo) + Environment.NewLine;
+                }
+
+                Int32 minutesDiff = Difference.Minutes;
+                Warning minutesInfo = analyzeNum(minutesDiff);
+
+                if (minutesInfo != Warning.None)
+                {
+                    result += Vocabulary.countMinutesTime(minutesDiff) + Environment.NewLine + Vocabulary.Analize(minutesInfo) + Environment.NewLine;
+                }
+
+                Int32 secondsDiff = Difference.Seconds;
+                Warning secondsInfo = analyzeNum(secondsDiff);
+
+                if (secondsInfo != Warning.None)
+                {
+                    result += Vocabulary.countSecondsTime(secondsDiff) + Environment.NewLine + Vocabulary.Analize(secondsInfo) + Environment.NewLine;
+                }
+                
+                */
 
                 if (Date != Default.ImportantDate && (Date - Default.ImportantDate).Days < maxDaysInMonth)
                 {
@@ -177,7 +207,7 @@ namespace What_day_is_it
                 return Vocabulary.noPartner() + Environment.NewLine;
             }
 
-            result += Vocabulary.countDateTime(days) + Environment.NewLine;
+            result += Vocabulary.countDaysTime(days) + Environment.NewLine;
 
             if (days < daysEnough)
             {
