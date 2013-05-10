@@ -1,0 +1,390 @@
+﻿/*************************************************
+ *                                               *
+ *     What day is it?                           *
+ *                                               *
+ *     Author: Timur Iskhakov                    *
+ *     E-mail: iskhakovt@gmail.com               *
+ *                                               *
+ *************************************************/
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace What_day_is_it
+{
+    static class Vocabulary
+    {
+        public static String Today()
+        {
+            return "Между прочим, сегодня ";
+        }
+
+        public static String noInfo()
+        {
+            if (Default.Sex)
+            {
+                return "Ты ничего не указал!\nКак я могу работать?!\n";
+            }
+            else
+            {
+                return "Ты ничего не указала!\nКак я могу работать?!\n";
+            }
+        }
+
+        public static String errorString()
+        {
+            return "Ошибка";
+        }
+
+        public static String partnerEarly()
+        {
+            if (Default.Sex)
+            {
+                return "Вы не могли начать встречаться до того, как родилась твоя девушка!";
+            }
+            else
+            {
+                return "Вы не могли начать встречаться до того, как родился твой парень!";
+            }
+        }
+
+        public static String partnerExactBirthday()
+        {
+            if (Default.Sex)
+            {
+                return "Вы не могли начать встречаться в день рождения твоей девушки!";
+            }
+            else
+            {
+                return "Вы не могли начать встречаться в день рождения твоего парня!";
+            }
+        }
+
+        public static String youEarly()
+        {
+            if (Default.Sex)
+            {
+                return "Вы не могли начать встречаться до того, как ты родился!";
+            }
+            else
+            {
+                return "Вы не могли начать встречаться до того, как ты родилась!";
+            }
+        }
+
+        public static String yourExactBirthdayBirthday()
+        {
+            return "Вы не могли начать встречаться в день твоего рождения!";
+        }
+
+        public static String rememberBoy()
+        {
+            return "Я помню, когда у моего парня день рождения";
+        }
+
+        public static String rememberGirl()
+        {
+            return "Я помню, когда у моей девушки день рождения";
+        }
+
+        public static String Analize(DateInfo.Warning warning)
+        {
+            switch (warning)
+            {
+                case DateInfo.Warning.DivHundred:
+                    return "Это число делится на 100.\n";
+                case DateInfo.Warning.DivTenThousand:
+                    return "Это число делится на 10000.\n";
+                case DateInfo.Warning.DivThousand:
+                    return "Это число делится на 1000.\n";
+                case DateInfo.Warning.EqualSymbols:
+                    return "Это число состоит из одинаковых цифр.\n";
+                case DateInfo.Warning.Symmetric:
+                    return "Это число симметрично.\n";
+                case DateInfo.Warning.EqualDiff:
+                    return "Это красивое число.\n";
+                default:
+                    return String.Empty;
+            }
+        }
+
+        public static String Valentine(Int32 diff = 0)
+        {
+            return "До для святого Валентина осталось " + diff + " " + Vocabulary.Day(diff) + ".\n";
+        }
+
+        public static String MenDay(Int32 diff = 0)
+        {
+            return "До дня защитника отечества осталось " + diff + " " + Day(diff) + ".\n";
+        }
+
+        public static String WomenDay(Int32 diff = 0)
+        {
+            return "До международного женского дня осталось " + diff + " " + Day(diff) + ".\n";
+        }
+
+        public static String NoPartnerYet()
+        {
+            if (Default.Sex)
+            {
+                return "Твоя девушка еще не родилась.\n";
+            }
+            else
+            {
+                return "Твой парень еще не родился.\n";
+            }
+        }
+
+        public static String NoYouYet()
+        {
+            return "Ты еще не родился.\n";
+        }
+
+        public static String yourBirthday(Int32 diff = 0)
+        {
+            if (diff == 0)
+            {
+                return "Сегодня твой день рождения!\n";
+            }
+            else if (diff == 1)
+            {
+                return "Завтра твой день рождения.\n";
+            }
+            else if (diff == -1)
+            {
+                return "Вчера был твой день рождения.\n";
+            }
+
+            throw new Exception("Birthday difference is too big");
+        }
+
+        public static String Birthday(Int32 diff = 0)
+        {
+            if (Default.Sex)
+            {
+                return girlBirthday(diff);
+            }
+            else
+            {
+                return boyBirthday(diff);
+            }
+        }
+
+        private static String girlBirthday(Int32 diff)
+        {
+            if (diff == 0)
+            {
+                return "Сегодня день рождения твоей девушки!\n";
+            }
+            else if (diff == 1)
+            {
+                return "Завтра день рождения твоей девушки!\n";
+            }
+            else if (diff == -1)
+            {
+                return "Вчера у твоей девушки был день рождения.\n";
+            }
+            else
+            {
+                return "День рождения твоей девушки через " + diff + " " + Day(diff) + ".\n";
+            }
+        }
+
+        private static String boyBirthday(Int32 diff)
+        {
+            if (diff == 0)
+            {
+                return "Сегодня день рождения твоего парня!\n";
+            }
+            else if (diff == 1)
+            {
+                return "Завтра день рождения твоего парня!\n";
+            }
+            else if (diff == -1)
+            {
+                return "Вчера у твоего парня был день рождения.\n";
+            }
+            else
+            {
+                return "День рождения твоего парня через " + diff + " " + Day(diff) + ".\n";
+            }
+        }
+
+        public static String Appears()
+        {
+            if (Default.Sex)
+            {
+                return "У тебя сегодня появилась девувшка!\n                    Поздравляю!!!\n";
+            }
+            else
+            {
+                return "У тебя сегодня появился парень!\n                Поздравляю!!!\n";
+            }
+        }
+
+        public static String noPartner()
+        {
+            if (Default.Sex)
+            {
+                return "У тебя нет девушки.\n";
+            }
+            else
+            {
+                return "У тебя нет парня.\n";
+            }
+        }
+
+        public static String countDateTime(Int32 num)
+        {
+            return "Вы встречаетесь уже " + num + " " + Day(num) + ".\n";
+        }
+
+        public static String LessMonth = "Это меньше месяца...\n";
+
+        public static String exactYears(Int32 years)
+        {
+            return "Вы встречаетесь ровно " + years + " " + Year(years) + "!\n";
+        }
+
+        public static String exactMonth(Int32 month)
+        {
+            return "Вы встречаетесь ровно " + month + " " + Month(month) + ".\n";
+        }
+
+        private static String Year(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Year cannot work with such num: " + num);
+            }
+
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
+            {
+                return "лет";
+            }
+            else if (num % 10 == 1)
+            {
+                return "год";
+            }
+            else
+            {
+                return "года";
+            }
+        }
+
+        private static String Month(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Month cannot work with such num: " + num);
+            }
+
+            if (num % 10 == 1)
+            {
+                return "месяц";
+            }
+            else if (num % 10 == 0 || num % 10 > 4)
+            {
+                return "месяцев";
+            }
+            else
+            {
+                return "месяца";
+            }
+        }
+
+        private static String Day(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Day cannot work with such num: " + num);
+            }
+
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
+            {
+                return "дней";
+            }
+            else if (num % 10 == 1)
+            {
+                return "день";
+            }
+            else
+            {
+                return "дня";
+            }
+        }
+
+        public static String CriticalError()
+        {
+            return "Критическая ошибка";
+        }
+
+        public static String noAtAll()
+        {
+            return "Ближайших важных событий нет\n";
+        }
+
+        public static String noMore()
+        {
+            return "Больше важных событий нет\n";
+        }
+
+        public static String HolydayText(Holidays.HolidayEvent Event)
+        {
+            if (Event.Holyday == Holidays.HolidayType.None)
+            {
+                throw new Exception("Vocabulary got None Holyday");
+            }
+
+            String result = String.Empty;
+
+            if (Event.Today)
+            {
+                result = "Сегодня ";
+            }
+            else
+            {
+                result = "Завтра ";
+            }
+
+            switch (Event.Holyday)
+            {
+                case Holidays.HolidayType.DayOfRussia:
+                    result += "день России.";
+                    break;
+                case Holidays.HolidayType.DayOfVictory:
+                    result += "день победы.";
+                    break;
+                case Holidays.HolidayType.FirstOfMay:
+                    result += "праздник весны и труда."; 
+                    break;
+                case Holidays.HolidayType.MenDay:
+                    result += "день защитника Отечества."; 
+                    break;
+                case Holidays.HolidayType.NationalUnity:
+                    result += "день народного единства."; 
+                    break;
+                case Holidays.HolidayType.NewYear:
+                    result += "новый год."; 
+                    break;
+                case Holidays.HolidayType.ValentineDay:
+                    result += "день святого Валентина."; 
+                    break;
+                case Holidays.HolidayType.WomenDay:
+                    result += "международный женский день."; 
+                    break;
+            }
+
+            result += Environment.NewLine;
+            return result;
+        }
+    }
+}
