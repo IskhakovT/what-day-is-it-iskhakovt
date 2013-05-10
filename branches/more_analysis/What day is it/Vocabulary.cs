@@ -238,9 +238,24 @@ namespace What_day_is_it
             }
         }
 
-        public static String countDateTime(Int32 num)
+        public static String countDaysTime(Int32 num)
         {
             return "Вы встречаетесь уже " + num + " " + Day(num) + ".\n";
+        }
+
+        public static String countHoursTime(Int32 num)
+        {
+            return "Вы встречаетесь уже " + num + " " + Hour(num) + ".\n";
+        }
+
+        public static String countMinutesTime(Int32 num)
+        {
+            return "Вы встречаетесь уже " + num + " " + Minute(num) + ".\n";
+        }
+
+        public static String countSecondsTime(Int32 num)
+        {
+            return "Вы встречаетесь уже " + num + " " + Second(num) + ".\n";
         }
 
         public static String LessMonth = "Это меньше месяца...\n";
@@ -285,13 +300,15 @@ namespace What_day_is_it
                 throw new Exception("Vocabulary.Month cannot work with such num: " + num);
             }
 
-            if (num % 10 == 1)
-            {
-                return "месяц";
-            }
-            else if (num % 10 == 0 || num % 10 > 4)
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
             {
                 return "месяцев";
+            }
+            else if (num % 10 == 1)
+            {
+                return "месяц";
             }
             else
             {
@@ -319,6 +336,75 @@ namespace What_day_is_it
             else
             {
                 return "дня";
+            }
+        }
+
+        private static String Hour(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Hour cannot work with such num: " + num);
+            }
+
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
+            {
+                return "часов";
+            }
+            else if (num % 10 == 1)
+            {
+                return "час";
+            }
+            else
+            {
+                return "часа";
+            }
+        }
+
+        private static String Minute(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Minute cannot work with such num: " + num);
+            }
+
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
+            {
+                return "минут";
+            }
+            else if (num % 10 == 1)
+            {
+                return "минута";
+            }
+            else
+            {
+                return "минуты";
+            }
+        }
+
+        private static String Second(Int32 num)
+        {
+            if (num <= 0)
+            {
+                throw new Exception("Vocabulary.Minute cannot work with such num: " + num);
+            }
+
+            num %= 100;
+
+            if (num % 10 > 4 || num % 10 == 0 || num / 10 == 1)
+            {
+                return "секунд";
+            }
+            else if (num % 10 == 1)
+            {
+                return "секунда";
+            }
+            else
+            {
+                return "секунды";
             }
         }
 
@@ -364,22 +450,22 @@ namespace What_day_is_it
                     result += "день победы.";
                     break;
                 case Holidays.HolidayType.FirstOfMay:
-                    result += "праздник весны и труда."; 
+                    result += "праздник весны и труда.";
                     break;
                 case Holidays.HolidayType.MenDay:
-                    result += "день защитника Отечества."; 
+                    result += "день защитника Отечества.";
                     break;
                 case Holidays.HolidayType.NationalUnity:
-                    result += "день народного единства."; 
+                    result += "день народного единства.";
                     break;
                 case Holidays.HolidayType.NewYear:
-                    result += "новый год."; 
+                    result += "новый год.";
                     break;
                 case Holidays.HolidayType.ValentineDay:
-                    result += "день святого Валентина."; 
+                    result += "день святого Валентина.";
                     break;
                 case Holidays.HolidayType.WomenDay:
-                    result += "международный женский день."; 
+                    result += "международный женский день.";
                     break;
             }
 

@@ -113,9 +113,39 @@ namespace What_day_is_it
 
                 if (info != DateInfo.Warning.None)
                 {
-                    result += Vocabulary.countDateTime(DateInfo.Diff(Default.ImportantDate, Date));
+                    result += Vocabulary.countDaysTime(DateInfo.Diff(Default.ImportantDate, Date));
                     result += Vocabulary.Analize(info);
                 }
+
+                /*
+
+                TimeSpan Difference = Date - Default.ImportantDate;
+
+                Int32 hoursDiff = Difference.Hours;
+                DateInfo.Warning hoursInfo = DateInfo.analyzeNum(hoursDiff);
+
+                if (hoursInfo != DateInfo.Warning.None)
+                {
+                    result += Vocabulary.countHoursTime(hoursDiff) + Vocabulary.Analize(hoursInfo);
+                }
+
+                Int32 minutesDiff = Difference.Minutes;
+                DateInfo.Warning minutesInfo = DateInfo.analyzeNum(minutesDiff);
+
+                if (minutesInfo != DateInfo.Warning.None)
+                {
+                    result += Vocabulary.countMinutesTime(minutesDiff) + Vocabulary.Analize(minutesInfo);
+                }
+
+                Int32 secondsDiff = Difference.Seconds;
+                DateInfo.Warning secondsInfo = DateInfo.analyzeNum(secondsDiff);
+
+                if (secondsInfo != DateInfo.Warning.None)
+                {
+                    result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analize(secondsInfo);
+                }
+                
+                */
             }
 
             if (Default.AnoterBirthdayExists && DateInfo.Diff(Date, Default.AnoterBirthday) >= 0)
@@ -259,7 +289,10 @@ namespace What_day_is_it
             getCloseInfo();
             changeAnyDay();
 
-            notifyIcon.ShowBalloonTip(1000, Default.Today.ToLongDateString(), todayInfo.Text, ToolTipIcon.Info);
+            if (todayInfo.Text != String.Empty)
+            {
+                notifyIcon.ShowBalloonTip(1000, Default.Today.ToLongDateString(), todayInfo.Text, ToolTipIcon.Info);
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
