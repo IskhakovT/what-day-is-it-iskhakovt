@@ -188,18 +188,20 @@ namespace What_day_is_it
 
         public static void checkDate()
         {
-            if (Default.Today.Year > 2199)
+            if (Default.Today.Year > maxYear)
             {
                 throw new Exception("Today is too big date");
             }
         }
 
-        public static String BoyString = "BOY";
-        public static String GirtString = "GIRL";
-        public static String TrueString = "TRUE";
-        public static String FalseString = "FALSE";
+        public static String BoyString =    "BOY";
+        public static String GirtString =   "GIRL";
+        public static String TrueString =   "TRUE";
+        public static String FalseString =  "FALSE";
 
         public static String BadArgs = "Bad arguments:\n";
         public static String StartTray = "startup";
+
+        private static Int32 maxYear = 2199;
     }
 }
