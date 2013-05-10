@@ -33,7 +33,7 @@ namespace What_day_is_it
             }
         }
 
-        public static HolidayEvent analyzeHolyday(DateTime Date)
+        public static HolidayEvent analyseHolyday(DateTime Date)
         {
             Int32 month = Date.Month;
             Int32 day = Date.Day;

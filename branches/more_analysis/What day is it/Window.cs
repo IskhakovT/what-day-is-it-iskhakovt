@@ -49,7 +49,7 @@ namespace What_day_is_it
             {
                 find = find.AddDays(1);
 
-                String add = getCloseDayInfo(find);
+                String add = DateInfo.getCloseInformation(find);
 
                 if (add != String.Empty)
                 {
@@ -86,110 +86,6 @@ namespace What_day_is_it
             {
                 label3.Text = Vocabulary.noMore();
             }
-        }
-
-        private String getCloseDayInfo(DateTime Date)
-        {
-            String result = String.Empty;
-
-            if (Default.ImportantDateExists)
-            {
-                if (Date.Day == Default.ImportantDate.Day)
-                {
-                    Int32 yearDiff = Date.Year - Default.ImportantDate.Year;
-
-                    if (Date.Month == Default.ImportantDate.Month)
-                    {
-                        result += Vocabulary.exactYears(yearDiff);
-                    }
-                    else
-                    {
-                        Int32 monthDiff = (Date.Month - Default.ImportantDate.Month) + yearDiff * 12;
-                        result += Vocabulary.exactMonth(monthDiff);
-                    }
-                }
-
-                DateInfo.Warning info = DateInfo.analyzeNum(DateInfo.Diff(Default.ImportantDate, Date));
-
-                if (info != DateInfo.Warning.None)
-                {
-                    result += Vocabulary.countDaysTime(DateInfo.Diff(Default.ImportantDate, Date));
-                    result += Vocabulary.Analize(info);
-                }
-
-                /*
-
-                TimeSpan Difference = Date - Default.ImportantDate;
-
-                Int32 hoursDiff = Difference.Hours;
-                DateInfo.Warning hoursInfo = DateInfo.analyzeNum(hoursDiff);
-
-                if (hoursInfo != DateInfo.Warning.None)
-                {
-                    result += Vocabulary.countHoursTime(hoursDiff) + Vocabulary.Analize(hoursInfo);
-                }
-
-                Int32 minutesDiff = Difference.Minutes;
-                DateInfo.Warning minutesInfo = DateInfo.analyzeNum(minutesDiff);
-
-                if (minutesInfo != DateInfo.Warning.None)
-                {
-                    result += Vocabulary.countMinutesTime(minutesDiff) + Vocabulary.Analize(minutesInfo);
-                }
-
-                Int32 secondsDiff = Difference.Seconds;
-                DateInfo.Warning secondsInfo = DateInfo.analyzeNum(secondsDiff);
-
-                if (secondsInfo != DateInfo.Warning.None)
-                {
-                    result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analize(secondsInfo);
-                }
-                
-                */
-            }
-
-            if (Default.AnoterBirthdayExists && DateInfo.Diff(Date, Default.AnoterBirthday) >= 0)
-            {
-                DateTime toBirthday = Default.AnoterBirthday;
-
-                while (toBirthday.Year != Date.Year)
-                {
-                    toBirthday = toBirthday.AddYears(1);
-                }
-
-                Int32 diff = DateInfo.Diff(Date, toBirthday);
-
-                if (diff == 0)
-                {
-                    result += Vocabulary.Birthday();
-                }
-            }
-
-            Holidays.HolidayEvent Holyday = Holidays.analyzeHolyday(Date);
-
-            if (Holyday.Holyday != Holidays.HolidayType.None && Holyday.Today)
-            {
-                result += Vocabulary.HolydayText(Holyday);
-            }
-
-            if (Default.YourBirthdayExists && DateInfo.Diff(Date, Default.YourBirthday) >= 0)
-            {
-                DateTime toBirthday = Default.YourBirthday;
-
-                while (toBirthday.Year != Date.Year)
-                {
-                    toBirthday = toBirthday.AddYears(1);
-                }
-
-                Int32 diff = DateInfo.Diff(Date, toBirthday);
-
-                if (diff == 0)
-                {
-                    result += Vocabulary.yourBirthday();
-                }
-            }
-
-            return result;
         }
 
         private void AddLabel(Push push, String info)

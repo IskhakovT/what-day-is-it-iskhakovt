@@ -91,7 +91,7 @@ namespace What_day_is_it
             return "Я помню, когда у моей девушки день рождения";
         }
 
-        public static String Analize(DateInfo.Warning warning)
+        public static String Analyse(DateInfo.Warning warning)
         {
             switch (warning)
             {
