@@ -322,7 +322,7 @@ namespace What_day_is_it
 
                     if (enoughForHour(hoursInfo))
                     {
-                        result += tryFind.ToLongTimeString() + ": ";
+                        result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countHoursTime(hoursDiff) + Vocabulary.Analyse(hoursInfo);
                         found = true;
                     }
@@ -354,7 +354,7 @@ namespace What_day_is_it
 
                     if (enoughForMinute(minutesInfo))
                     {
-                        result += tryFind.ToLongTimeString() + ": ";
+                        result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countMinutesTime(minutesDiff) + Vocabulary.Analyse(minutesInfo);
                         found = true;
                     }
@@ -386,7 +386,7 @@ namespace What_day_is_it
 
                     if (enoughForSecond(secondsInfo))
                     {
-                        result += tryFind.ToLongTimeString() + ": ";
+                        result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analyse(secondsInfo);
                         found = true;
                     }
@@ -541,5 +541,7 @@ namespace What_day_is_it
         private static Int32 tenMillion =           10000000;
         private static Int32 hundredMillion =       100000000;
         private static Int32 billion =              1000000000;
+
+        private static String moreMicroInfo = ": "; 
     }
 }

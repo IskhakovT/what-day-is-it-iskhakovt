@@ -91,10 +91,10 @@ namespace What_day_is_it
             // todayInfo
             // 
             this.todayInfo.AutoSize = true;
-            this.todayInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.todayInfo.Location = new System.Drawing.Point(10, 65);
+            this.todayInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F);
+            this.todayInfo.Location = new System.Drawing.Point(10, 60);
             this.todayInfo.Name = "todayInfo";
-            this.todayInfo.Size = new System.Drawing.Size(44, 18);
+            this.todayInfo.Size = new System.Drawing.Size(43, 17);
             this.todayInfo.TabIndex = 1;
             this.todayInfo.Text = "today";
             // 
@@ -124,10 +124,10 @@ namespace What_day_is_it
             // anyDayInfo
             // 
             this.anyDayInfo.AutoSize = true;
-            this.anyDayInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.anyDayInfo.Location = new System.Drawing.Point(7, 65);
+            this.anyDayInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F);
+            this.anyDayInfo.Location = new System.Drawing.Point(7, 60);
             this.anyDayInfo.Name = "anyDayInfo";
-            this.anyDayInfo.Size = new System.Drawing.Size(31, 18);
+            this.anyDayInfo.Size = new System.Drawing.Size(31, 17);
             this.anyDayInfo.TabIndex = 6;
             this.anyDayInfo.Text = "any";
             // 
@@ -199,6 +199,7 @@ namespace What_day_is_it
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Какой сегодня день";
             this.notifyIcon.Visible = true;
+            this.notifyIcon.BalloonTipClosed += new System.EventHandler(this.notifyIcon_BalloonTipClosed);
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
             // contextMenuStrip
