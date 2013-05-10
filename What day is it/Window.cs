@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+//using System.Collections.Specialized;
 
 namespace What_day_is_it
 {
@@ -35,8 +36,37 @@ namespace What_day_is_it
             if (!Default.FirstStart)
             {
                 newDay();
+
+                if (showBalloonList.Count > 0)
+                {
+                    showFirstBalloon();
+                }
             }
         }
+
+        private class ToShow
+        {
+            private String _Label;
+            private String _Message;
+
+            public ToShow(String Label, String Message)
+            {
+                _Label = Label;
+                _Message = Message;
+            }
+
+            public String Label
+            {
+                get { return _Label; }
+            }
+
+            public String Message
+            {
+                get { return _Message; }
+            }
+        }
+
+        private List<ToShow> showBalloonList = new List<ToShow>();
 
         private enum Push { One, Two, Three, Done };
 
@@ -53,6 +83,8 @@ namespace What_day_is_it
 
                 if (add != String.Empty)
                 {
+                    showBalloonList.Add(new ToShow(Vocabulary.Soon() + find.ToLongDateString(), add));
+
                     add = find.ToLongDateString() + Environment.NewLine + add;
                     AddLabel(push, add);
 
@@ -182,13 +214,15 @@ namespace What_day_is_it
             todayLabel.Text = Vocabulary.Today() + Default.Today.ToLongDateString();
             todayInfo.Text = DateInfo.getInformation(Default.Today);
 
+            if (todayInfo.Text != String.Empty)
+            {
+                showBalloonList.Add(new ToShow(Default.Today.ToLongDateString(), todayInfo.Text));
+            }
+
             getCloseInfo();
             changeAnyDay();
 
-            if (todayInfo.Text != String.Empty)
-            {
-                notifyIcon.ShowBalloonTip(1000, Default.Today.ToLongDateString(), todayInfo.Text, ToolTipIcon.Info);
-            }
+            
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -200,5 +234,24 @@ namespace What_day_is_it
         }
 
         public Boolean settingsOpened = false;
+
+        private void notifyIcon_BalloonTipClosed(object sender, EventArgs e)
+        {
+            if (showBalloonList.Count > 0)
+            {
+                showFirstBalloon();
+            }
+        }
+
+        private void showFirstBalloon()
+        {
+            if (showBalloonList.Count == 0)
+            {
+                throw new Exception("There is no balloon to show");
+            }
+
+            notifyIcon.ShowBalloonTip(500, showBalloonList[0].Label, showBalloonList[0].Message, ToolTipIcon.Info);
+            showBalloonList.RemoveAt(0);
+        }
     }
 }

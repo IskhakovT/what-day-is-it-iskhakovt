@@ -482,5 +482,10 @@ namespace What_day_is_it
             result += Environment.NewLine;
             return result;
         }
+
+        public static String Soon()
+        {
+            return "Скоро ";
+        }
     }
 }

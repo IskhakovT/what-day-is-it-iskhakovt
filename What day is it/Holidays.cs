@@ -14,22 +14,20 @@ namespace What_day_is_it
             private HolidayType _Holyday;
             private Boolean _Today;
 
-            public HolidayEvent(HolidayType getType, Boolean getDay)
+            public HolidayEvent(HolidayType Holyday, Boolean Today)
             {
-                _Holyday = getType;
-                _Today = getDay;
+                _Holyday = Holyday;
+                _Today = Today;
             }
 
             public HolidayType Holyday
             {
                 get { return _Holyday; }
-                set { _Holyday = value; }
             }
 
             public Boolean Today
             {
                 get { return _Today; }
-                set { _Today = value; }
             }
         }
 

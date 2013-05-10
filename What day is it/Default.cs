@@ -51,22 +51,20 @@ namespace What_day_is_it
                 _Date = Today;
             }
 
-            public InDate(DateTime getDate)
+            public InDate(DateTime Date)
             {
                 _Exists = true;
-                _Date = getDate;
+                _Date = Date;
             }
 
             public Boolean Exists
             {
                 get { return _Exists; }
-                set { _Exists = value; }
             }
 
             public DateTime Date
             {
                 get { return _Date; }
-                set { _Date = value; }
             }
         }
 
