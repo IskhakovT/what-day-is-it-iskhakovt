@@ -24,7 +24,7 @@ namespace What_day_is_it
             {
                 String shortResult = Vocabulary.noInfo() + Environment.NewLine;
 
-                Holidays.HolidayEvent shortHolyday = Holidays.analyzeHolyday(Date);
+                Holidays.HolidayEvent shortHolyday = Holidays.analyseHolyday(Date);
 
                 if (shortHolyday.Holyday != Holidays.HolidayType.None)
                 {
@@ -62,63 +62,32 @@ namespace What_day_is_it
             {
                 result += getDateInfo(Date);
 
-                Warning dayInfo = analyzeNum(Diff(Default.ImportantDate, Date));
+                Warning dayInfo = analyseNum(Diff(Default.ImportantDate, Date));
 
                 if (dayInfo != Warning.None)
                 {
-                    result += Vocabulary.Analize(dayInfo) + Environment.NewLine;
+                    result += Vocabulary.Analyse(dayInfo) + Environment.NewLine;
                 }
 
-                /*
+                String microInfo;
 
-                TimeSpan Difference = Date - Default.ImportantDate;
-
-                Int32 hoursDiff = Difference.Hours;
-                Warning hoursInfo = analyzeNum(hoursDiff);
-
-                if (hoursInfo != Warning.None)
+                microInfo = hoursAnalyse(Date);
+                if (microInfo != String.Empty)
                 {
-                    result += Vocabulary.countHoursTime(hoursDiff) + Environment.NewLine + Vocabulary.Analize(hoursInfo) + Environment.NewLine;
+                    result += microInfo + Environment.NewLine;
                 }
 
-                Int32 minutesDiff = Difference.Minutes;
-                Warning minutesInfo = analyzeNum(minutesDiff);
-
-                if (minutesInfo != Warning.None)
+                microInfo = minutesAnalyse(Date);
+                if (microInfo != String.Empty)
                 {
-                    result += Vocabulary.countMinutesTime(minutesDiff) + Environment.NewLine + Vocabulary.Analize(minutesInfo) + Environment.NewLine;
+                    result += microInfo + Environment.NewLine;
                 }
 
-                */
-
-                /// BRANCH CHANGES
-
-                if (Diff(Default.ImportantDate, Date) >= daysEnough)
+                microInfo = secondsAnalyse(Date);
+                if (microInfo != String.Empty)
                 {
-
-                    DateTime tryFind = Date;
-                    Boolean found = false;
-
-                    while (!found && tryFind.Day == Date.Day)
-                    {
-                        tryFind = tryFind.AddSeconds(1);
-
-                        Int32 secondsDiff = (tryFind - Default.ImportantDate).Seconds + (tryFind - Default.ImportantDate).Minutes * 60 + (tryFind - Default.ImportantDate).Hours * 60 * 60;
-                        secondsDiff += Diff(Default.ImportantDate, tryFind) * 24 * 60 * 60;
-
-                        Warning secondsInfo = analyzeNum(secondsDiff);
-
-                        // not enough
-                        if (secondsInfo == Warning.DivTenThousand)
-                        {
-                            result += tryFind.ToLongTimeString() + ": ";
-                            result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analize(secondsInfo) + Environment.NewLine;
-                            found = true;
-                        }
-                    }
+                    result += microInfo + Environment.NewLine;
                 }
-
-                /// END BRANCH CHANGES
 
                 if (Date != Default.ImportantDate && (Date - Default.ImportantDate).Days < maxDaysInMonth)
                 {
@@ -153,7 +122,7 @@ namespace What_day_is_it
                 }
             }
 
-            Holidays.HolidayEvent Holyday = Holidays.analyzeHolyday(Date);
+            Holidays.HolidayEvent Holyday = Holidays.analyseHolyday(Date);
 
             if (Holyday.Holyday != Holidays.HolidayType.None)
             {
@@ -208,6 +177,84 @@ namespace What_day_is_it
             return result;
         }
 
+        public static String getCloseInformation(DateTime Date)
+        {
+            String result = String.Empty;
+
+            if (Default.ImportantDateExists)
+            {
+                if (Date.Day == Default.ImportantDate.Day)
+                {
+                    Int32 yearDiff = Date.Year - Default.ImportantDate.Year;
+
+                    if (Date.Month == Default.ImportantDate.Month)
+                    {
+                        result += Vocabulary.exactYears(yearDiff);
+                    }
+                    else
+                    {
+                        Int32 monthDiff = (Date.Month - Default.ImportantDate.Month) + yearDiff * 12;
+                        result += Vocabulary.exactMonth(monthDiff);
+                    }
+                }
+
+                DateInfo.Warning info = DateInfo.analyseNum(DateInfo.Diff(Default.ImportantDate, Date));
+
+                if (info != DateInfo.Warning.None)
+                {
+                    result += Vocabulary.countDaysTime(DateInfo.Diff(Default.ImportantDate, Date));
+                    result += Vocabulary.Analyse(info);
+                }
+
+                result += hoursAnalyse(Date);
+                result += minutesAnalyse(Date);
+                result += secondsAnalyse(Date);
+            }
+
+            if (Default.AnoterBirthdayExists && DateInfo.Diff(Date, Default.AnoterBirthday) >= 0)
+            {
+                DateTime toBirthday = Default.AnoterBirthday;
+
+                while (toBirthday.Year != Date.Year)
+                {
+                    toBirthday = toBirthday.AddYears(1);
+                }
+
+                Int32 diff = DateInfo.Diff(Date, toBirthday);
+
+                if (diff == 0)
+                {
+                    result += Vocabulary.Birthday();
+                }
+            }
+
+            Holidays.HolidayEvent Holyday = Holidays.analyseHolyday(Date);
+
+            if (Holyday.Holyday != Holidays.HolidayType.None && Holyday.Today)
+            {
+                result += Vocabulary.HolydayText(Holyday);
+            }
+
+            if (Default.YourBirthdayExists && DateInfo.Diff(Date, Default.YourBirthday) >= 0)
+            {
+                DateTime toBirthday = Default.YourBirthday;
+
+                while (toBirthday.Year != Date.Year)
+                {
+                    toBirthday = toBirthday.AddYears(1);
+                }
+
+                Int32 diff = DateInfo.Diff(Date, toBirthday);
+
+                if (diff == 0)
+                {
+                    result += Vocabulary.yourBirthday();
+                }
+            }
+
+            return result;
+        }
+
         private static String getDateInfo(DateTime Date)
         {
             if (!Default.ImportantDateExists)
@@ -253,6 +300,117 @@ namespace What_day_is_it
             return result;
         }
 
+        private static String hoursAnalyse(DateTime Date)
+        {
+            String result = String.Empty;
+
+            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            {
+                DateTime tryFind = Date;
+                Boolean found = false;
+
+                while (!found && tryFind.Day == Date.Day)
+                {
+                    tryFind = tryFind.AddHours(1);
+
+                    TimeSpan difference = tryFind - Default.ImportantDate;
+
+                    Int32 hoursDiff = difference.Hours;
+                    hoursDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay;
+
+                    Warning hoursInfo = analyseNum(hoursDiff);
+
+                    if (enoughForHour(hoursInfo))
+                    {
+                        result += tryFind.ToLongTimeString() + ": ";
+                        result += Vocabulary.countHoursTime(hoursDiff) + Vocabulary.Analyse(hoursInfo);
+                        found = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static String minutesAnalyse(DateTime Date)
+        {
+            String result = String.Empty;
+
+            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            {
+                DateTime tryFind = Date;
+                Boolean found = false;
+
+                while (!found && tryFind.Day == Date.Day)
+                {
+                    tryFind = tryFind.AddMinutes(1);
+
+                    TimeSpan difference = tryFind - Default.ImportantDate;
+
+                    Int32 minutesDiff =  difference.Minutes + difference.Hours * minutesInHour;
+                    minutesDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay * minutesInHour;
+
+                    Warning minutesInfo = analyseNum(minutesDiff);
+
+                    if (enoughForMinute(minutesInfo))
+                    {
+                        result += tryFind.ToLongTimeString() + ": ";
+                        result += Vocabulary.countMinutesTime(minutesDiff) + Vocabulary.Analyse(minutesInfo);
+                        found = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static String secondsAnalyse(DateTime Date)
+        {
+            String result = String.Empty;
+
+            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            {
+                DateTime tryFind = Date;
+                Boolean found = false;
+
+                while (!found && tryFind.Day == Date.Day)
+                {
+                    tryFind = tryFind.AddSeconds(1);
+
+                    TimeSpan difference = tryFind - Default.ImportantDate;
+
+                    Int32 secondsDiff = difference.Seconds + difference.Minutes * secondsInMinute + difference.Hours * minutesInHour * secondsInMinute;
+                    secondsDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay * minutesInHour * secondsInMinute;
+
+                    Warning secondsInfo = analyseNum(secondsDiff);
+
+                    if (enoughForSecond(secondsInfo))
+                    {
+                        result += tryFind.ToLongTimeString() + ": ";
+                        result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analyse(secondsInfo);
+                        found = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static Boolean enoughForHour(Warning info)
+        {
+            return (enoughForMinute(info) || info == Warning.DivTenThousand || info == Warning.DivThousand);
+        }
+
+        private static Boolean enoughForMinute(Warning info)
+        {
+            return (enoughForSecond(info) || info == Warning.DivHundredThousand);
+        }
+
+        private static Boolean enoughForSecond(Warning info)
+        {
+            return (info == Warning.DivBillion || info == Warning.DivHundredMillion || info == Warning.DivTenMillion || info == Warning.DivMillion);
+        }
+
         public static Int32 Diff(DateTime First, DateTime Second)
         {
             return (Second - First).Days;
@@ -260,7 +418,7 @@ namespace What_day_is_it
 
         public enum Warning { DivBillion, DivHundredMillion, DivTenMillion, DivMillion, DivHundredThousand, DivTenThousand, DivThousand, DivHundred, EqualSymbols, Symmetric, EqualDiff, None };
 
-        public static Warning analyzeNum(Int32 num)
+        private static Warning analyseNum(Int32 num)
         {
             if (!Default.ImportantDateExists || num < daysEnough)
             {
@@ -371,6 +529,9 @@ namespace What_day_is_it
         private static Int32 maxDaysInMonth =       31;
         private static Int32 daysEnough =           11;
         private static Int32 monthInYear =          12;
+        private static Int32 secondsInMinute =      60;
+        private static Int32 minutesInHour =        60;
+        private static Int32 hoursInDay =           24;
 
         private static Int32 hundred =              100;
         private static Int32 thousand =             1000;
