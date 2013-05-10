@@ -4503,7 +4503,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[DATABASEDIR]What day is it.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{B0A795C6-8A1E-4A96-9723-AA449F9E40F4}</td><td/></row>
 		<row><td>ProductName</td><td>Какой сегодня день</td><td/></row>
-		<row><td>ProductVersion</td><td>1.13.89</td><td/></row>
+		<row><td>ProductVersion</td><td>1.14.90</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

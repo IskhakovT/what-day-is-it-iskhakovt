@@ -250,8 +250,10 @@ namespace What_day_is_it
                 throw new Exception("There is no balloon to show");
             }
 
-            notifyIcon.ShowBalloonTip(500, showBalloonList[0].Label, showBalloonList[0].Message, ToolTipIcon.Info);
+            notifyIcon.ShowBalloonTip(timeShowBalloon, showBalloonList[0].Label, showBalloonList[0].Message, ToolTipIcon.Info);
             showBalloonList.RemoveAt(0);
         }
+
+        private Int32 timeShowBalloon = 750;
     }
 }
