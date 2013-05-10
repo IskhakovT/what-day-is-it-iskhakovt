@@ -33,12 +33,12 @@ namespace What_day_is_it
 
                 if (Date.Month == monthFebruary)
                 {
-                    if (Date.Day > (dayMen - daysToAlert) && Date.Day < (dayMen - 1))
+                    if (Date.Day > (dayMen - daysAlert) && Date.Day < (dayMen - 1))
                     {
                         shortResult += Vocabulary.MenDay(dayMen - Date.Day) + Environment.NewLine;
                     }
 
-                    if (Date.Day > (dayValentine - daysToAlert) && Date.Day < (dayValentine - 1))
+                    if (Date.Day > (dayValentine - daysAlert) && Date.Day < (dayValentine - 1))
                     {
                         shortResult += Vocabulary.Valentine(dayValentine - Date.Day) + Environment.NewLine;
                     }
@@ -46,7 +46,7 @@ namespace What_day_is_it
 
                 if (Date.Month == monthMarch)
                 {
-                    if (Date.Day > (dayWomen - daysToAlert) && Date.Day < (dayWomen - 1))
+                    if (Date.Day > (dayWomen - daysAlert) && Date.Day < (dayWomen - 1))
                     {
                         shortResult += Vocabulary.WomenDay(dayWomen - Date.Day) + Environment.NewLine;
                     }
@@ -89,15 +89,36 @@ namespace What_day_is_it
                     result += Vocabulary.countMinutesTime(minutesDiff) + Environment.NewLine + Vocabulary.Analize(minutesInfo) + Environment.NewLine;
                 }
 
-                Int32 secondsDiff = Difference.Seconds;
-                Warning secondsInfo = analyzeNum(secondsDiff);
-
-                if (secondsInfo != Warning.None)
-                {
-                    result += Vocabulary.countSecondsTime(secondsDiff) + Environment.NewLine + Vocabulary.Analize(secondsInfo) + Environment.NewLine;
-                }
-                
                 */
+
+                /// BRANCH CHANGES
+
+                if (Diff(Default.ImportantDate, Date) >= daysEnough)
+                {
+
+                    DateTime tryFind = Date;
+                    Boolean found = false;
+
+                    while (!found && tryFind.Day == Date.Day)
+                    {
+                        tryFind = tryFind.AddSeconds(1);
+
+                        Int32 secondsDiff = (tryFind - Default.ImportantDate).Seconds + (tryFind - Default.ImportantDate).Minutes * 60 + (tryFind - Default.ImportantDate).Hours * 60 * 60;
+                        secondsDiff += Diff(Default.ImportantDate, tryFind) * 24 * 60 * 60;
+
+                        Warning secondsInfo = analyzeNum(secondsDiff);
+
+                        // not enough
+                        if (secondsInfo == Warning.DivTenThousand)
+                        {
+                            result += tryFind.ToLongTimeString() + ": ";
+                            result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analize(secondsInfo) + Environment.NewLine;
+                            found = true;
+                        }
+                    }
+                }
+
+                /// END BRANCH CHANGES
 
                 if (Date != Default.ImportantDate && (Date - Default.ImportantDate).Days < maxDaysInMonth)
                 {
@@ -125,7 +146,7 @@ namespace What_day_is_it
 
                     Int32 diff = Diff(Date, toBirthday);
 
-                    if (diff > daysToAlertBirthday && diff < daysToAlert)
+                    if (diff > daysAlertBirthday && diff < daysAlert)
                     {
                         result += Vocabulary.Birthday(diff) + Environment.NewLine;
                     }
@@ -141,12 +162,12 @@ namespace What_day_is_it
 
             if (Date.Month == monthFebruary)
             {
-                if (Date.Day > (dayMen - daysToAlert) && Date.Day < (dayMen - 1))
+                if (Date.Day > (dayMen - daysAlert) && Date.Day < (dayMen - 1))
                 {
                     result += Vocabulary.MenDay(dayMen - Date.Day) + Environment.NewLine;
                 }
 
-                if (Date.Day > (dayValentine - daysToAlert) && Date.Day < (dayValentine - 1))
+                if (Date.Day > (dayValentine - daysAlert) && Date.Day < (dayValentine - 1))
                 {
                     result += Vocabulary.Valentine(dayValentine - Date.Day) + Environment.NewLine;
                 }
@@ -154,7 +175,7 @@ namespace What_day_is_it
 
             if (Date.Month == monthMarch)
             {
-                if (Date.Day > (dayWomen - daysToAlert) && Date.Day < (dayWomen - 1))
+                if (Date.Day > (dayWomen - daysAlert) && Date.Day < (dayWomen - 1))
                 {
                     result += Vocabulary.WomenDay(dayWomen - Date.Day) + Environment.NewLine;
                 }
@@ -177,7 +198,7 @@ namespace What_day_is_it
 
                     Int32 diff = Diff(Date, toBirthday);
 
-                    if (Math.Abs(diff) < daysToYourAlert)
+                    if (Math.Abs(diff) < daysYourAlert)
                     {
                         result += Vocabulary.yourBirthday(diff) + Environment.NewLine;
                     }
@@ -237,7 +258,7 @@ namespace What_day_is_it
             return (Second - First).Days;
         }
 
-        public enum Warning { DivTenThousand, DivThousand, DivHundred, EqualSymbols, Symmetric, EqualDiff, None };
+        public enum Warning { DivBillion, DivHundredMillion, DivTenMillion, DivMillion, DivHundredThousand, DivTenThousand, DivThousand, DivHundred, EqualSymbols, Symmetric, EqualDiff, None };
 
         public static Warning analyzeNum(Int32 num)
         {
@@ -246,18 +267,43 @@ namespace What_day_is_it
                 return Warning.None;
             }
 
+            if (num % billion == 0)
+            {
+                return Warning.DivBillion;
+            }
+
+            if (num % hundredMillion == 0)
+            {
+                return Warning.DivHundredMillion;
+            }
+
+            if (num % tenMillion == 0)
+            {
+                return Warning.DivTenMillion;
+            }
+
+            if (num % million == 0)
+            {
+                return Warning.DivMillion;
+            }
+
+            if (num % hundredThousand == 0)
+            {
+                return Warning.DivHundredThousand;
+            }
+
+            if (num % tenThousand == 0)
+            {
+                return Warning.DivTenThousand;
+            }
+
+            if (num % thousand == 0)
+            {
+                return Warning.DivThousand;
+            }
+
             if (num % hundred == 0)
             {
-                if (num % thousand == 0)
-                {
-                    if (num % tenThousand == 0)
-                    {
-                        return Warning.DivTenThousand;
-                    }
-
-                    return Warning.DivThousand;
-                }
-
                 return Warning.DivHundred;
             }
 
@@ -314,20 +360,25 @@ namespace What_day_is_it
             return Warning.None;
         }
 
-        public static Int32 monthFebruary = 2;
-        public static Int32 monthMarch = 3;
-        public static Int32 dayValentine = 14;
-        public static Int32 dayMen = 23;
-        public static Int32 dayWomen = 8;
-        public static Int32 daysToAlert = 6;
-        public static Int32 daysToAlertBirthday = -2;
-        public static Int32 daysToYourAlert = 2;
-        public static Int32 maxDaysInMonth = 31;
-        public static Int32 daysEnough = 11;
-        public static Int32 monthInYear = 12;
+        private static Int32 monthFebruary =        2;
+        private static Int32 monthMarch =           3;
+        private static Int32 dayValentine =         14;
+        private static Int32 dayMen =               23;
+        private static Int32 dayWomen =             8;
+        private static Int32 daysAlert =            6;
+        private static Int32 daysAlertBirthday =    -2;
+        private static Int32 daysYourAlert =        2;
+        private static Int32 maxDaysInMonth =       31;
+        private static Int32 daysEnough =           11;
+        private static Int32 monthInYear =          12;
 
-        public static Int32 hundred = 100;
-        public static Int32 thousand = 1000;
-        public static Int32 tenThousand = 1000;
+        private static Int32 hundred =              100;
+        private static Int32 thousand =             1000;
+        private static Int32 tenThousand =          10000;
+        private static Int32 hundredThousand =      100000;
+        private static Int32 million =              1000000;
+        private static Int32 tenMillion =           10000000;
+        private static Int32 hundredMillion =       100000000;
+        private static Int32 billion =              1000000000;
     }
 }

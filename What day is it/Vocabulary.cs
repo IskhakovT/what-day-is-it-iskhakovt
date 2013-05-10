@@ -95,12 +95,22 @@ namespace What_day_is_it
         {
             switch (warning)
             {
-                case DateInfo.Warning.DivHundred:
-                    return "Это число делится на 100.\n";
+                case DateInfo.Warning.DivBillion:
+                    return "Это число делится на миллиард.\n";
+                case DateInfo.Warning.DivHundredMillion:
+                    return "Это число делится на сто милионов.\n";
+                case DateInfo.Warning.DivTenMillion:
+                    return "Это число делится на десять милионов.\n";
+                case DateInfo.Warning.DivMillion:
+                    return "Это число делится на миллион.\n";
+                case DateInfo.Warning.DivHundredThousand:
+                    return "Это число делится на сто тысяч.\n";
                 case DateInfo.Warning.DivTenThousand:
-                    return "Это число делится на 10000.\n";
+                    return "Это число делится на десять тысяч.\n";
                 case DateInfo.Warning.DivThousand:
-                    return "Это число делится на 1000.\n";
+                    return "Это число делится на тысячу.\n";
+                case DateInfo.Warning.DivHundred:
+                    return "Это число делится на сто.\n";
                 case DateInfo.Warning.EqualSymbols:
                     return "Это число состоит из одинаковых цифр.\n";
                 case DateInfo.Warning.Symmetric:
@@ -218,7 +228,7 @@ namespace What_day_is_it
         {
             if (Default.Sex)
             {
-                return "У тебя сегодня появилась девувшка!\n                    Поздравляю!!!\n";
+                return "У тебя сегодня появилась девувшка!\n                   Поздравляю!!!\n";
             }
             else
             {
