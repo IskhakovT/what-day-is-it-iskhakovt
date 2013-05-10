@@ -13,7 +13,7 @@
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
  *          Release date:   10th of May 2013                                                    *
- *          Version:        1.13.89                                                             *
+ *          Version:        1.14.90                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
