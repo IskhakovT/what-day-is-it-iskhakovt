@@ -11,7 +11,7 @@ namespace What_day_is_it
         public static void WriteLog(String message)
         {
             StreamWriter writeLog = new StreamWriter(Default.LogFile, true);
-            writeLog.Write("" + message);
+            writeLog.Write(DateTime.Now.ToString() + Space + message);
             writeLog.WriteLine();
             writeLog.Close();
         }
@@ -65,7 +65,7 @@ namespace What_day_is_it
         {
             WriteLog("Log out\n");
         }
+
+        private static String Space = " ";
     }
-
-
 }
