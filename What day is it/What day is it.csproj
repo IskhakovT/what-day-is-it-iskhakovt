@@ -82,6 +82,7 @@
     <EmbeddedResource Include="Window.resx">
       <DependentUpon>Window.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="AppData EmptyFiles\data" />
     <None Include="AppData EmptyFiles\log" />
     <None Include="AppData EmptyFiles\settings" />
     <None Include="Properties\Settings.settings">

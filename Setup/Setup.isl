@@ -554,7 +554,7 @@
 		<row><td>LicenseAgreement</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsLicenseDlg_LicenseAgreement##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>PushButton</td><td>301</td><td>188</td><td>65</td><td>17</td><td>3</td><td/><td>##IDS_PRINT_BUTTON##</td><td>Agree</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\What day is it\license.rtf</td><td/></row>
+		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\license.rtf</td><td/></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Banner</td><td>Bitmap</td><td>0</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary1</td></row>
@@ -1884,6 +1884,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>data</td><td>ISX_DEFAULTCOMPONENT1</td><td>data</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\What day is it\AppData EmptyFiles\data</td><td>1</td><td/></row>
 		<row><td>log</td><td>ISX_DEFAULTCOMPONENT1</td><td>log</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\What day is it\AppData EmptyFiles\log</td><td>1</td><td/></row>
 		<row><td>settings</td><td>ISX_DEFAULTCOMPONENT1</td><td>settings</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\What day is it\AppData EmptyFiles\settings</td><td>1</td><td/></row>
 		<row><td>what_day_is_it.exe</td><td>What_day_is_it.exe</td><td>WHATDA~1.EXE|What day is it.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\Timur\Documents\Visual Studio 2012\Projects\What day is it - iskhakovt\What day is it\bin\Release\What day is it.exe</td><td>1</td><td/></row>
@@ -4503,7 +4504,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[DATABASEDIR]What day is it.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{B0A795C6-8A1E-4A96-9723-AA449F9E40F4}</td><td/></row>
 		<row><td>ProductName</td><td>Какой сегодня день</td><td/></row>
-		<row><td>ProductVersion</td><td>1.14.92</td><td/></row>
+		<row><td>ProductVersion</td><td>1.15.17</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

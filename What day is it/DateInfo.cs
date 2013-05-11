@@ -320,7 +320,7 @@ namespace What_day_is_it
 
                     Warning hoursInfo = analyseNum(hoursDiff);
 
-                    if (enoughForHour(hoursInfo))
+                    if (enoughForHour(hoursInfo) || hoursInfo == Warning.EqualSymbols)
                     {
                         result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countHoursTime(hoursDiff) + Vocabulary.Analyse(hoursInfo);
@@ -352,7 +352,7 @@ namespace What_day_is_it
 
                     Warning minutesInfo = analyseNum(minutesDiff);
 
-                    if (enoughForMinute(minutesInfo))
+                    if (enoughForMinute(minutesInfo) || minutesInfo == Warning.EqualSymbols)
                     {
                         result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countMinutesTime(minutesDiff) + Vocabulary.Analyse(minutesInfo);
@@ -384,7 +384,7 @@ namespace What_day_is_it
 
                     Warning secondsInfo = analyseNum(secondsDiff);
 
-                    if (enoughForSecond(secondsInfo))
+                    if (enoughForSecond(secondsInfo) || secondsInfo == Warning.EqualSymbols)
                     {
                         result += tryFind.ToLongTimeString() + moreMicroInfo + Environment.NewLine;
                         result += Vocabulary.countSecondsTime(secondsDiff) + Vocabulary.Analyse(secondsInfo);
