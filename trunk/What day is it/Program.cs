@@ -12,8 +12,8 @@
  *          vk:             https://vk.com/iskhakovt                                            *
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
- *          Release date:   10th of May 2013                                                    *
- *          Version:        1.14.92                                                             *
+ *          Release date:   12th of May 2013                                                    *
+ *          Version:        1.15.17                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *

@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "What day is it", "What day 
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{A0587784-6FD1-4C3A-BCDB-D31A723A6CAB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCE771F2-A482-452F-83C5-B555D5066521}"
+	ProjectSection(SolutionItems) = preProject
+		license.rtf = license.rtf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
