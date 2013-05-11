@@ -13,7 +13,7 @@
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
  *          Release date:   10th of May 2013                                                    *
- *          Version:        1.14.90                                                             *
+ *          Version:        1.14.92                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -62,10 +62,12 @@ namespace What_day_is_it
                 if (process != null)
                 {
                     Log.LogAgain();
+                    Log.WriteLogOut();
+
                     return;
                 }
-
-                Default.checkDate();
+                
+                Default.checkDate();                
 
                 if ((Args.Length == 1 && Args[0] != Default.StartTray) || Args.Length > 1)
                 {
@@ -77,6 +79,17 @@ namespace What_day_is_it
                     }
 
                     throw new Exception(Default.BadArgs + Arguments);
+                }
+
+                Default.checkDirectory();
+                Default.LoadSettings();
+
+                if (Args.Length > 0 && !Default.StartUpEnabled)
+                {
+                    Log.LogInTrayAborted();
+                    Log.WriteLogOut();
+
+                    return;
                 }
 
                 if (Default.checkFile())
@@ -122,7 +135,10 @@ namespace What_day_is_it
             catch (Exception ex)
             {
                 Log.WriteLog(ex.ToString());
+
                 MessageBox.Show(ex.Message, Vocabulary.CriticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Log.WriteLogOut();
             }
         }
 

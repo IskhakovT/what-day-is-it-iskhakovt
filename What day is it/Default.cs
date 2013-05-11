@@ -24,6 +24,7 @@ namespace What_day_is_it
         private static String CommonFolder = AppData + "/iskhakovt/What day is it/";
 
         public static String SettingsFile = CommonFolder + "settings";
+        public static String DataFile = CommonFolder + "data";
         public static String LogFile = CommonFolder + "log";
 
         public static DateTime Today = DateTime.Today;
@@ -39,6 +40,108 @@ namespace What_day_is_it
         public static Boolean Sex;
 
         public static Boolean FirstStart = false;
+
+        public static Boolean ShowNotifications;
+        public static Boolean StartUpEnabled;
+
+        public static void checkDirectory()
+        {
+            if (!Directory.Exists(AppData))
+            {
+                Directory.CreateDirectory(AppData);
+            }
+
+            if (!Directory.Exists(CommonFolder))
+            {
+                Directory.CreateDirectory(CommonFolder);
+            }
+        }
+
+        public static void LoadSettings()
+        {
+            if (File.Exists(SettingsFile))
+            {
+                try
+                {
+                    StreamReader readData = new StreamReader(SettingsFile);
+
+                    String notifications = readData.ReadLine();
+
+                    if (notifications == NotificationsOn)
+                    {
+                        ShowNotifications = true;
+                    }
+                    else if (notifications == NotificationsOff)
+                    {
+                        ShowNotifications = false;
+                    }
+                    else
+                    {
+                        readData.Close();
+                        throw new Exception("Bad input in settings file (notifications): " + notifications);
+                    }
+
+                    String startUp = readData.ReadLine();
+
+                    if (startUp == StartUpOn)
+                    {
+                        StartUpEnabled = true;
+                    }
+                    else if (startUp == StartUpOff)
+                    {
+                        StartUpEnabled = false;
+                    }
+                    else
+                    {
+                        readData.Close();
+                        throw new Exception("Bad input in settings file (startUp): " + startUp);
+                    }
+
+                    readData.Close();
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteLog(ex.ToString());
+
+                    ShowNotifications = true;
+                    StartUpEnabled = true;
+
+                    SaveSettings();
+                }
+            }
+            else
+            {
+                ShowNotifications = true;
+                StartUpEnabled = true;
+
+                SaveSettings();
+            }
+        }
+
+        public static void SaveSettings()
+        {
+            StreamWriter writeData = new StreamWriter(SettingsFile);
+
+            if (ShowNotifications)
+            {
+                writeData.WriteLine(NotificationsOn);
+            }
+            else
+            {
+                writeData.WriteLine(NotificationsOff);
+            }
+
+            if (StartUpEnabled)
+            {
+                writeData.WriteLine(StartUpOn);
+            }
+            else
+            {
+                writeData.WriteLine(StartUpOff);
+            }
+
+            writeData.Close();
+        }
 
         private class InDate
         {
@@ -70,21 +173,11 @@ namespace What_day_is_it
 
         public static Boolean checkFile()
         {
-            if (!Directory.Exists(AppData))
-            {
-                Directory.CreateDirectory(AppData);
-            }
-
-            if (!Directory.Exists(CommonFolder))
-            {
-                Directory.CreateDirectory(CommonFolder);
-            }
-
-            if (File.Exists(SettingsFile))
+            if (File.Exists(DataFile))
             {
                 try
                 {
-                    StreamReader readData = new StreamReader(SettingsFile);
+                    StreamReader readData = new StreamReader(DataFile);
 
                     String sex = readData.ReadLine();
 
@@ -99,7 +192,7 @@ namespace What_day_is_it
                     else
                     {
                         readData.Close();
-                        throw new Exception("Bad message in input file: " + sex);
+                        throw new Exception("Bad input in data file (sex): " + sex);
                     }
 
                     InDate GetDate;
@@ -125,7 +218,7 @@ namespace What_day_is_it
                 {
                     Log.WriteLog(ex.ToString());
 
-                    File.Delete(SettingsFile);
+                    File.Delete(DataFile);
                     return false;
                 }
             }
@@ -150,7 +243,7 @@ namespace What_day_is_it
                 if (year < 1900 || year > 2199)
                 {
                     readData.Close();
-                    throw new Exception("Bad input year: " + year.ToString());
+                    throw new Exception("Bad input in data file: bad input year " + year.ToString());
                 }
 
                 Int32 month = Convert.ToInt32(readData.ReadLine());
@@ -160,7 +253,8 @@ namespace What_day_is_it
 
                 if (DateInfo.Diff(input, Default.Today) < 0)
                 {
-                    throw new Exception("Input date is after today");
+                    readData.Close();
+                    throw new Exception("Bad input in data file: input date is after today");
                 }
 
                 return new InDate(input);
@@ -168,14 +262,14 @@ namespace What_day_is_it
             else
             {
                 readData.Close();
-                throw new Exception("Bad message in input file: " + exists);
+                throw new Exception("Bad input in data file (exists): " + exists);
             }
         }
 
         public static void WriteSettings(StringCollection toWrite)
         {
-            File.Create(SettingsFile).Close();
-            StreamWriter writeData = new StreamWriter(Default.SettingsFile);
+            File.Create(DataFile).Close();
+            StreamWriter writeData = new StreamWriter(Default.DataFile);
 
             for (Int32 i = 0; i < toWrite.Count; ++i)
             {
@@ -194,10 +288,15 @@ namespace What_day_is_it
             }
         }
 
-        public static String BoyString =    "BOY";
-        public static String GirtString =   "GIRL";
-        public static String TrueString =   "TRUE";
-        public static String FalseString =  "FALSE";
+        private static String NotificationsOn =     "NOTIFICATIONS ON";
+        private static String NotificationsOff =    "NOTIFICATIONS OFF";
+        private static String StartUpOn =           "STARTUP ON";
+        private static String StartUpOff =          "STARTUP OFF";
+
+        public static String BoyString =            "BOY";
+        public static String GirtString =           "GIRL";
+        public static String TrueString =           "TRUE";
+        public static String FalseString =          "FALSE";
 
         public static String BadArgs = "Bad arguments:\n";
         public static String StartTray = "startup";

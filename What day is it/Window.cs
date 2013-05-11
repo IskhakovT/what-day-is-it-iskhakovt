@@ -33,6 +33,8 @@ namespace What_day_is_it
 
             dateTimePicker.Value = Default.Today;
 
+            UpdateContexText();
+
             if (!Default.FirstStart)
             {
                 newDay();
@@ -42,6 +44,12 @@ namespace What_day_is_it
                     showFirstBalloon();
                 }
             }
+        }
+
+        private void UpdateContexText()
+        {
+            contextMenuStrip.Items[contextNotificationItem].Text = Vocabulary.contextNotifications(Default.ShowNotifications);
+            contextMenuStrip.Items[contextStartUpItem].Text = Vocabulary.contextStartUp(Default.StartUpEnabled);
         }
 
         private class ToShow
@@ -83,7 +91,10 @@ namespace What_day_is_it
 
                 if (add != String.Empty)
                 {
-                    showBalloonList.Add(new ToShow(Vocabulary.Soon() + find.ToLongDateString(), add));
+                    if (Default.ShowNotifications)
+                    {
+                        showBalloonList.Add(new ToShow(Vocabulary.Soon() + find.ToLongDateString(), add));
+                    }
 
                     add = find.ToLongDateString() + Environment.NewLine + add;
                     AddLabel(push, add);
@@ -214,7 +225,7 @@ namespace What_day_is_it
             todayLabel.Text = Vocabulary.Today() + Default.Today.ToLongDateString();
             todayInfo.Text = DateInfo.getInformation(Default.Today);
 
-            if (todayInfo.Text != String.Empty)
+            if (Default.ShowNotifications && todayInfo.Text != String.Empty)
             {
                 showBalloonList.Add(new ToShow(Default.Today.ToLongDateString(), todayInfo.Text));
             }
@@ -254,6 +265,25 @@ namespace What_day_is_it
             showBalloonList.RemoveAt(0);
         }
 
+        private Int32 contextNotificationItem = 3;
+        private Int32 contextStartUpItem = 4;
+
         private Int32 timeShowBalloon = 750;
+
+        private void notificationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Default.ShowNotifications = !Default.ShowNotifications;
+            Default.SaveSettings();
+
+            UpdateContexText();
+        }
+
+        private void startupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Default.StartUpEnabled = !Default.StartUpEnabled;
+            Default.SaveSettings();
+
+            UpdateContexText();
+        }
     }
 }
