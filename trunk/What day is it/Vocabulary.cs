@@ -487,5 +487,29 @@ namespace What_day_is_it
         {
             return "Скоро ";
         }
+
+        public static String contextNotifications(Boolean show)
+        {
+            if (show)
+            {
+                return "Скрыть всплывающие уведомления";
+            }
+            else
+            {
+                return "Показать всплывающие уведомления";
+            }
+        }
+
+        public static String contextStartUp(Boolean startUp)
+        {
+            if (startUp)
+            {
+                return "Отключить автозапуск";
+            }
+            else
+            {
+                return "Включить автозапуск";
+            }
+        }
     }
 }

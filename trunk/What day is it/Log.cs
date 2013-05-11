@@ -11,54 +11,59 @@ namespace What_day_is_it
         public static void WriteLog(String message)
         {
             StreamWriter writeLog = new StreamWriter(Default.LogFile, true);
-            writeLog.Write(message);
+            writeLog.Write("" + message);
             writeLog.WriteLine();
             writeLog.Close();
         }
 
         public static void WriteLogIn()
         {
-            WriteLog(DateTime.Now.ToString() + " Log in");
+            WriteLog("Log in");
         }
 
         public static void LogInTray()
         {
-            WriteLog(DateTime.Now.ToString() + " Log in tray");
+            WriteLog("Log in tray");
+        }
+
+        public static void LogInTrayAborted()
+        {
+            WriteLog("Log in tray aborted -- it is disabled");
         }
 
         public static void LogAgain()
         {
-            WriteLog(DateTime.Now.ToString() + " Tried to log in again");
+            WriteLog("Tried to log in again");
         }
 
         public static void FirstSettingsOpened()
         {
-            WriteLog(DateTime.Now.ToString() + " First start master opened");
+            WriteLog("First start master opened");
         }
 
         public static void SettingsOpened()
         {
-            WriteLog(DateTime.Now.ToString() + " Settings opened");
+            WriteLog("Settings opened");
         }
 
         public static void SaveButton()
         {
-            WriteLog(DateTime.Now.ToString() + " Saving settings");
+            WriteLog("Saving settings");
         }
 
         public static void ApplicationClosed()
         {
-            WriteLog(DateTime.Now.ToString() + " Closed in tray");
+            WriteLog("Closed in tray");
         }
 
         public static void ApplicationOpened()
         {
-            WriteLog(DateTime.Now.ToString() + " Opened from tray");
+            WriteLog("Opened from tray");
         }
 
         public static void WriteLogOut()
         {
-            WriteLog(DateTime.Now.ToString() + " Log out\n");
+            WriteLog("Log out\n");
         }
     }
 
