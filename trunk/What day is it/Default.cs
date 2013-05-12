@@ -253,7 +253,7 @@ namespace What_day_is_it
 
                 DateTime input = new DateTime(year, month, day);
 
-                if (DateInfo.Diff(input, Default.Today) < 0)
+                if ((Default.Today - input).Days < 0)
                 {
                     readData.Close();
                     throw new Exception("Bad input in data file: input date is after today");

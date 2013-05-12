@@ -101,7 +101,7 @@ namespace What_day_is_it
 
             if (Default.AnoterBirthdayExists)
             {
-                if (Diff(Date, Default.AnoterBirthday) > 0)
+                if (Diff(Default.AnoterBirthday, Date) < 0)
                 {
                     result += Vocabulary.NoPartnerYet() + Environment.NewLine;
                 }
@@ -153,7 +153,7 @@ namespace What_day_is_it
 
             if (Default.YourBirthdayExists)
             {
-                if (Diff(Date, Default.YourBirthday) > 0)
+                if (Diff(Default.YourBirthday, Date) < 0)
                 {
                     result += Vocabulary.NoYouYet() + Environment.NewLine;
                 }
@@ -412,7 +412,7 @@ namespace What_day_is_it
             return (info == Warning.DivBillion || info == Warning.DivHundredMillion || info == Warning.DivTenMillion || info == Warning.DivMillion);
         }
 
-        public static Int32 Diff(DateTime First, DateTime Second)
+        private static Int32 Diff(DateTime First, DateTime Second)
         {
             return (Second - First).Days;
         }
@@ -524,15 +524,17 @@ namespace What_day_is_it
         private static Int32 dayValentine =         14;
         private static Int32 dayMen =               23;
         private static Int32 dayWomen =             8;
+
         private static Int32 daysAlert =            6;
         private static Int32 daysAlertBirthday =    -2;
         private static Int32 daysYourAlert =        2;
-        private static Int32 maxDaysInMonth =       31;
         private static Int32 daysEnough =           11;
-        private static Int32 monthInYear =          12;
+
+        private static Int32 maxDaysInMonth =       31; 
         private static Int32 secondsInMinute =      60;
         private static Int32 minutesInHour =        60;
         private static Int32 hoursInDay =           24;
+        private static Int32 monthInYear =          12;
 
         private static Int32 hundred =              100;
         private static Int32 thousand =             1000;

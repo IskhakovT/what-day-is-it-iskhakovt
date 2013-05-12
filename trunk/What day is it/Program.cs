@@ -12,8 +12,8 @@
  *          vk:             https://vk.com/iskhakovt                                            *
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
- *          Release date:   12th of May 2013                                                    *
- *          Version:        1.16.20                                                             *
+ *          Release date:   13th of May 2013                                                    *
+ *          Version:        1.16.22                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -64,7 +64,6 @@ namespace What_day_is_it
                 if (process != null)
                 {
                     Log.LogAgain();
-                    Log.WriteLogOut();
 
                     return;
                 }
@@ -89,7 +88,7 @@ namespace What_day_is_it
                 if (Args.Length > 0 && !Default.StartUpEnabled)
                 {
                     Log.LogInTrayAborted();
-                    Log.WriteLogOut();
+                    Log.LogOut();
 
                     return;
                 }
@@ -107,7 +106,7 @@ namespace What_day_is_it
                     }
                     else
                     {
-                        Log.WriteLogIn();
+                        Log.LogIn();
 
                         mainWindow = new Window();
                         mainWindow.Closed += (o, e) => Application.Exit();
@@ -118,7 +117,7 @@ namespace What_day_is_it
                 }
                 else
                 {
-                    Log.WriteLogIn();
+                    Log.LogIn();
                     Log.FirstSettingsOpened();
 
                     Default.FirstStart = true;
@@ -132,7 +131,7 @@ namespace What_day_is_it
                     Application.Run();
                 }
 
-                Log.WriteLogOut();
+                Log.LogOut();
             }
             catch (Exception ex)
             {
@@ -140,11 +139,11 @@ namespace What_day_is_it
 
                 MessageBox.Show(ex.Message, Vocabulary.CriticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                Log.WriteLogOut();
+                Log.LogOut();
             }
         }
 
-        public static Process RunningInstance()
+        private static Process RunningInstance()
         {
             Process current = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(current.ProcessName);
