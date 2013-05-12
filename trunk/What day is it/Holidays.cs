@@ -12,18 +12,18 @@ namespace What_day_is_it
 
         public class HolidayEvent
         {
-            private HolidayType _Holyday;
+            private HolidayType _Holiday;
             private Boolean _Today;
 
-            public HolidayEvent(HolidayType Holyday, Boolean Today)
+            public HolidayEvent(HolidayType Holiday, Boolean Today)
             {
-                _Holyday = Holyday;
+                _Holiday = Holiday;
                 _Today = Today;
             }
 
-            public HolidayType Holyday
+            public HolidayType Holiday
             {
-                get { return _Holyday; }
+                get { return _Holiday; }
             }
 
             public Boolean Today
@@ -32,7 +32,7 @@ namespace What_day_is_it
             }
         }
 
-        public static HolidayEvent analyseHolyday(DateTime Date)
+        public static HolidayEvent analyseHoliday(DateTime Date)
         {
             Int32 month = Date.Month;
             Int32 day = Date.Day;

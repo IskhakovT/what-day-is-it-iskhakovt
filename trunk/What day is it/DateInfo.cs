@@ -25,11 +25,11 @@ namespace What_day_is_it
             {
                 String shortResult = Vocabulary.noInfo() + Environment.NewLine;
 
-                Holidays.HolidayEvent shortHolyday = Holidays.analyseHolyday(Date);
+                Holidays.HolidayEvent shortGetHoliday = Holidays.analyseHoliday(Date);
 
-                if (shortHolyday.Holyday != Holidays.HolidayType.None)
+                if (shortGetHoliday.Holiday != Holidays.HolidayType.None)
                 {
-                    shortResult += Vocabulary.HolydayText(shortHolyday) + Environment.NewLine;
+                    shortResult += Vocabulary.HolidayText(shortGetHoliday) + Environment.NewLine;
                 }
 
                 if (Date.Month == monthFebruary)
@@ -123,11 +123,11 @@ namespace What_day_is_it
                 }
             }
 
-            Holidays.HolidayEvent Holyday = Holidays.analyseHolyday(Date);
+            Holidays.HolidayEvent getHoliday = Holidays.analyseHoliday(Date);
 
-            if (Holyday.Holyday != Holidays.HolidayType.None)
+            if (getHoliday.Holiday != Holidays.HolidayType.None)
             {
-                result += Vocabulary.HolydayText(Holyday) + Environment.NewLine;
+                result += Vocabulary.HolidayText(getHoliday) + Environment.NewLine;
             }
 
             if (Date.Month == monthFebruary)
@@ -229,11 +229,11 @@ namespace What_day_is_it
                 }
             }
 
-            Holidays.HolidayEvent Holyday = Holidays.analyseHolyday(Date);
+            Holidays.HolidayEvent getHoliday = Holidays.analyseHoliday(Date);
 
-            if (Holyday.Holyday != Holidays.HolidayType.None && Holyday.Today)
+            if (getHoliday.Holiday != Holidays.HolidayType.None && getHoliday.Today)
             {
-                result += Vocabulary.HolydayText(Holyday);
+                result += Vocabulary.HolidayText(getHoliday);
             }
 
             if (Default.YourBirthdayExists && DateInfo.Diff(Date, Default.YourBirthday) >= 0)
