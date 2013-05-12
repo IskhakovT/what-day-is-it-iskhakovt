@@ -9,11 +9,13 @@
  *                                                                                              *
  *          Author:         Timur Iskhakov                                                      *
  *          E-mail:         iskhakovt@gmail.com                                                 *
- *          vk:             https://vk.com/iskhakovt                                            *
- *          facebook:       https://www.facebook.com/iskhakovt                                  *
+ *          VK:             https://vk.com/iskhakovt                                            *
+ *          Facebook:       https://www.facebook.com/iskhakovt                                  *
+ *                                                                                              *
+ *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
  *          Release date:   13th of May 2013                                                    *
- *          Version:        1.16.22                                                             *
+ *          Version:        1.16.23                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *

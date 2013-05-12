@@ -3878,7 +3878,7 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1049</td><td>Процессор не подходит для работы [ProductName].</td><td>0</td><td/><td>1386307951</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1049</td><td>Объем памяти ОЗУ не достаточен для работы [ProductName].</td><td>0</td><td/><td>1386307951</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1049</td><td>Разрешение экрана не подходит для работы [ProductName].</td><td>0</td><td/><td>1386307951</td></row>
-		<row><td>ID_STRING1</td><td>1049</td><td>https://vk.com/iskhakovt</td><td>0</td><td/><td>1386297967</td></row>
+		<row><td>ID_STRING1</td><td>1049</td><td>https://code.google.com/p/what-day-is-it-iskhakovt/</td><td>0</td><td/><td>1788937280</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>iskhakovt</td><td>0</td><td/><td>1386324463</td></row>
 		<row><td>ID_STRING2</td><td>1049</td><td>iskhakovt</td><td>0</td><td/><td>1386307951</td></row>
 		<row><td>ID_STRING3</td><td>1049</td><td>Какой сегодня день</td><td>0</td><td/><td>1386307951</td></row>
@@ -4506,7 +4506,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[DATABASEDIR]What day is it.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{B0A795C6-8A1E-4A96-9723-AA449F9E40F4}</td><td/></row>
 		<row><td>ProductName</td><td>Какой сегодня день</td><td/></row>
-		<row><td>ProductVersion</td><td>1.16.22</td><td/></row>
+		<row><td>ProductVersion</td><td>1.16.23</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
