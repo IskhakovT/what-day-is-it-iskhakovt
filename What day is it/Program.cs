@@ -13,7 +13,7 @@
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
  *          Release date:   12th of May 2013                                                    *
- *          Version:        1.15.17                                                             *
+ *          Version:        1.16.19                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -42,6 +42,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+
 using System.Diagnostics;
 using System.Reflection;
 
