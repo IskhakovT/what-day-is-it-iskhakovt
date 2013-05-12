@@ -213,8 +213,6 @@ namespace What_day_is_it
             saveButton.Enabled = true;
         }
 
-
-
         private void FirstStart_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Default.FirstStart)

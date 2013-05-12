@@ -234,8 +234,6 @@ namespace What_day_is_it
 
             getCloseInfo();
             changeAnyDay();
-
-            
         }
 
         private void timer_Tick(object sender, EventArgs e)

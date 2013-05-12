@@ -18,7 +18,7 @@ namespace What_day_is_it
             writeLog.Close();
         }
 
-        public static void WriteLogIn()
+        public static void LogIn()
         {
             WriteLog("Log in");
         }
@@ -63,7 +63,7 @@ namespace What_day_is_it
             WriteLog("Opened from tray");
         }
 
-        public static void WriteLogOut()
+        public static void LogOut()
         {
             WriteLog("Log out\n");
         }
