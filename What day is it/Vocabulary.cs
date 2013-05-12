@@ -434,11 +434,11 @@ namespace What_day_is_it
             return "Больше важных событий нет\n";
         }
 
-        public static String HolydayText(Holidays.HolidayEvent Event)
+        public static String HolidayText(Holidays.HolidayEvent Event)
         {
-            if (Event.Holyday == Holidays.HolidayType.None)
+            if (Event.Holiday == Holidays.HolidayType.None)
             {
-                throw new Exception("Vocabulary got None Holyday");
+                throw new Exception("Vocabulary got None Holiday");
             }
 
             String result = String.Empty;
@@ -452,7 +452,7 @@ namespace What_day_is_it
                 result = "Завтра ";
             }
 
-            switch (Event.Holyday)
+            switch (Event.Holiday)
             {
                 case Holidays.HolidayType.DayOfRussia:
                     result += "день России.";
