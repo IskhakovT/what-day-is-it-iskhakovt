@@ -168,15 +168,19 @@ namespace What_day_is_it
         {
             if (saveClosingForm)
             {
+                Log.ApplicationClosed();
+
                 Visible = false;
                 e.Cancel = true;
             }
         }
 
-        public void show()
+        public void showForm()
         {
             if (!settingsOpened)
             {
+                Log.ApplicationOpened();
+
                 Visible = true;
                 WindowState = FormWindowState.Normal;
             }
@@ -184,14 +188,12 @@ namespace What_day_is_it
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            Log.ApplicationOpened();
-            show();
+            showForm();
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            Log.ApplicationOpened();
-            show();
+            showForm();
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)

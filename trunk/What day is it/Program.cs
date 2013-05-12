@@ -13,7 +13,7 @@
  *          facebook:       https://www.facebook.com/iskhakovt                                  *
  *                                                                                              *
  *          Release date:   12th of May 2013                                                    *
- *          Version:        1.16.19                                                             *
+ *          Version:        1.16.20                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -167,12 +167,12 @@ namespace What_day_is_it
 
         public static void ShowMainWindow()
         {
-            Log.ApplicationOpened();
-
             Default.FirstStart = false;
+
             mainWindow.settingsOpened = false;
             mainWindow.newDay();
-            mainWindow.show();
+
+            mainWindow.showForm();
         }
     }
 }
