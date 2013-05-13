@@ -15,7 +15,7 @@
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
  *          Release date:   13th of May 2013                                                    *
- *          Version:        1.16.23                                                             *
+ *          Version:        1.17.25                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -47,7 +47,6 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 
 using System.Diagnostics;
-using System.Reflection;
 
 namespace What_day_is_it
 {
@@ -61,7 +60,7 @@ namespace What_day_is_it
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Process process = RunningInstance();
+                Process process = Core.RunningInstance();
 
                 if (process != null)
                 {
@@ -69,25 +68,14 @@ namespace What_day_is_it
 
                     return;
                 }
-                
-                Default.checkDate();                
 
-                if ((Args.Length == 1 && Args[0] != Default.StartTray) || Args.Length > 1)
-                {
-                    String Arguments = String.Empty;
+                Core.setToday();
+                Data.checkDirectory();
+                Data.LoadSettings();
 
-                    for (Int32 i = 0; i < Args.Length; ++i)
-                    {
-                        Arguments += Args[i] + Environment.NewLine;
-                    }
+                Boolean normalLog = Core.checkArgs(Args);
 
-                    throw new Exception(Default.BadArgs + Arguments);
-                }
-
-                Default.checkDirectory();
-                Default.LoadSettings();
-
-                if (Args.Length > 0 && !Default.StartUpEnabled)
+                if (!normalLog && !Data.StartUpEnabled)
                 {
                     Log.LogInTrayAborted();
                     Log.LogOut();
@@ -95,24 +83,23 @@ namespace What_day_is_it
                     return;
                 }
 
-                if (Default.checkFile())
-                {
-                    if (Args.Length > 0)
-                    {
-                        Log.LogInTray();
+                Core.Initialize();
 
-                        mainWindow = new Window();
-                        mainWindow.Closed += (o, e) => Application.Exit();
+                if (Data.checkFile())
+                {
+                    if (normalLog)
+                    {
+                        Log.LogIn();
+
+                        Log.ApplicationOpened();
+
+                        Core.mainWindow.Show();
 
                         Application.Run();
                     }
                     else
                     {
-                        Log.LogIn();
-
-                        mainWindow = new Window();
-                        mainWindow.Closed += (o, e) => Application.Exit();
-                        mainWindow.Show();
+                        Log.LogInTray();
 
                         Application.Run();
                     }
@@ -122,10 +109,7 @@ namespace What_day_is_it
                     Log.LogIn();
                     Log.FirstSettingsOpened();
 
-                    Default.FirstStart = true;
-
-                    mainWindow = new Window();
-                    mainWindow.Closed += (o, e) => Application.Exit();
+                    Core.FirstStart = true;
 
                     FirstStart Start = new FirstStart();
                     Start.Show();
@@ -143,37 +127,6 @@ namespace What_day_is_it
 
                 Log.LogOut();
             }
-        }
-
-        private static Process RunningInstance()
-        {
-            Process current = Process.GetCurrentProcess();
-            Process[] processes = Process.GetProcessesByName(current.ProcessName);
-
-            foreach (Process process in processes)
-            {
-                if (process.Id != current.Id)
-                {
-                    if (Assembly.GetExecutingAssembly().Location.Replace("/", "\\") == current.MainModule.FileName)
-                    {
-                        return process;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        private static Window mainWindow;
-
-        public static void ShowMainWindow()
-        {
-            Default.FirstStart = false;
-
-            mainWindow.settingsOpened = false;
-            mainWindow.newDay();
-
-            mainWindow.showForm();
         }
     }
 }

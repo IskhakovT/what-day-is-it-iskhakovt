@@ -31,11 +31,11 @@ namespace What_day_is_it
 
             timer.Start();
 
-            dateTimePicker.Value = Default.Today;
+            dateTimePicker.Value = Core.Today;
 
             UpdateContexText();
 
-            if (!Default.FirstStart)
+            if (!Core.FirstStart)
             {
                 newDay();
 
@@ -48,8 +48,8 @@ namespace What_day_is_it
 
         private void UpdateContexText()
         {
-            contextMenuStrip.Items[contextNotificationItem].Text = Vocabulary.contextNotifications(Default.ShowNotifications);
-            contextMenuStrip.Items[contextStartUpItem].Text = Vocabulary.contextStartUp(Default.StartUpEnabled);
+            contextMenuStrip.Items[contextNotificationItem].Text = Vocabulary.contextNotifications(Data.ShowNotifications);
+            contextMenuStrip.Items[contextStartUpItem].Text = Vocabulary.contextStartUp(Data.StartUpEnabled);
         }
 
         private class ToShow
@@ -80,10 +80,10 @@ namespace What_day_is_it
 
         private void getCloseInfo()
         {
-            DateTime find = Default.Today;
+            DateTime find = Core.Today;
             Push push = Push.One;
 
-            while (push != Push.Done && (find - Default.Today).Days < 15)
+            while (push != Push.Done && (find - Core.Today).Days < 15)
             {
                 find = find.AddDays(1);
 
@@ -91,7 +91,7 @@ namespace What_day_is_it
 
                 if (add != String.Empty)
                 {
-                    if (Default.ShowNotifications)
+                    if (Data.ShowNotifications)
                     {
                         showBalloonList.Add(new ToShow(Vocabulary.Soon() + find.ToLongDateString(), add));
                     }
@@ -154,7 +154,7 @@ namespace What_day_is_it
 
         private void changeAnyDay()
         {
-            if (dateTimePicker.Value == Default.Today)
+            if (dateTimePicker.Value == Core.Today)
             {
                 anyDayInfo.Text = String.Empty;
             }
@@ -172,6 +172,10 @@ namespace What_day_is_it
 
                 Visible = false;
                 e.Cancel = true;
+            }
+            else
+            {
+                Application.Exit();
             }
         }
 
@@ -211,7 +215,7 @@ namespace What_day_is_it
 
         private void закрытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Log.ApplicationClosed();
+            Log.ApplicationExit();
 
             saveClosingForm = false;
             Close();
@@ -221,15 +225,14 @@ namespace What_day_is_it
 
         public void newDay()
         {
-            Default.Today = DateTime.Today;
-            Default.checkDate();
+            Core.setToday();
 
-            todayLabel.Text = Vocabulary.Today() + Default.Today.ToLongDateString();
-            todayInfo.Text = DateInfo.getInformation(Default.Today);
+            todayLabel.Text = Vocabulary.Today() + Core.Today.ToLongDateString();
+            todayInfo.Text = DateInfo.getInformation(Core.Today);
 
-            if (Default.ShowNotifications && todayInfo.Text != String.Empty)
+            if (Data.ShowNotifications && todayInfo.Text != String.Empty)
             {
-                showBalloonList.Add(new ToShow(Default.Today.ToLongDateString(), todayInfo.Text));
+                showBalloonList.Add(new ToShow(Core.Today.ToLongDateString(), todayInfo.Text));
             }
 
             getCloseInfo();
@@ -238,13 +241,19 @@ namespace What_day_is_it
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (DateTime.Today != Default.Today)
+            if (DateTime.Today != Core.Today)
             {
                 newDay();
             }
         }
 
-        public Boolean settingsOpened = false;
+        private Boolean _SettingsOpened = false;
+
+        public Boolean settingsOpened
+        {
+            get { return _SettingsOpened; }
+            set { _SettingsOpened = value; }
+        }
 
         private void notifyIcon_BalloonTipClosed(object sender, EventArgs e)
         {
@@ -272,16 +281,14 @@ namespace What_day_is_it
 
         private void notificationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Default.ShowNotifications = !Default.ShowNotifications;
-            Default.SaveSettings();
+            Data.invertNotifications();
 
             UpdateContexText();
         }
 
         private void startupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Default.StartUpEnabled = !Default.StartUpEnabled;
-            Default.SaveSettings();
+            Data.invertStartUp();
 
             UpdateContexText();
         }

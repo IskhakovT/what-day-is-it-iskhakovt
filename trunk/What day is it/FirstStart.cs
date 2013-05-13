@@ -29,9 +29,9 @@ namespace What_day_is_it
         {
             InitializeComponent();
 
-            if (!Default.FirstStart)
+            if (!Core.FirstStart)
             {
-                if (Default.Sex)
+                if (Data.Sex)
                 {
                     boyRadioButton.Checked = true;
                 }
@@ -40,25 +40,25 @@ namespace What_day_is_it
                     girlRadioButton.Checked = true;
                 }
 
-                if (Default.ImportantDateExists)
+                if (Data.ImportantDateExists)
                 {
                     dateCheckBox.Checked = true;
                     dateTime.Enabled = true;
-                    dateTime.Value = Default.ImportantDate;
+                    dateTime.Value = Data.ImportantDate;
                 }
 
-                if (Default.AnoterBirthdayExists)
+                if (Data.AnoterBirthdayExists)
                 {
                     herCheckBox.Checked = true;
                     herTime.Enabled = true;
-                    herTime.Value = Default.AnoterBirthday;
+                    herTime.Value = Data.AnoterBirthday;
                 }
 
-                if (Default.YourBirthdayExists)
+                if (Data.YourBirthdayExists)
                 {
                     myCheckBox.Checked = true;
                     myTime.Enabled = true;
-                    myTime.Value = Default.YourBirthday;
+                    myTime.Value = Data.YourBirthday;
                 }
             }
             else
@@ -66,13 +66,13 @@ namespace What_day_is_it
                 boyRadioButton.Checked = false;
                 girlRadioButton.Checked = false;
 
-                dateTime.Value = Default.Today;
-                herTime.Value = Default.Today;
-                myTime.Value = Default.Today;
+                dateTime.Value = Core.Today;
+                herTime.Value = Core.Today;
+                myTime.Value = Core.Today;
 
-                dateTime.MaxDate = Default.Today;
-                herTime.MaxDate = Default.Today;
-                myTime.MaxDate = Default.Today;
+                dateTime.MaxDate = Core.Today;
+                herTime.MaxDate = Core.Today;
+                myTime.MaxDate = Core.Today;
             }
         }
 
@@ -130,12 +130,12 @@ namespace What_day_is_it
 
             if (boyRadioButton.Checked)
             {
-                toWrite.Add(Default.BoyString);
+                toWrite.Add(Data.BoyString);
             }
 
             if (girlRadioButton.Checked)
             {
-                toWrite.Add(Default.GirtString);
+                toWrite.Add(Data.GirtString);
             }
 
             if (!(boyRadioButton.Checked ^ girlRadioButton.Checked))
@@ -145,7 +145,7 @@ namespace What_day_is_it
 
             if (dateCheckBox.Checked)
             {
-                toWrite.Add(Default.TrueString);
+                toWrite.Add(Data.TrueString);
 
                 DateTime Date = dateTime.Value;
                 toWrite.Add(Date.Year.ToString());
@@ -154,12 +154,12 @@ namespace What_day_is_it
             }
             else
             {
-                toWrite.Add(Default.FalseString);
+                toWrite.Add(Data.FalseString);
             }
 
             if (herCheckBox.Checked)
             {
-                toWrite.Add(Default.TrueString);
+                toWrite.Add(Data.TrueString);
 
                 DateTime Date = herTime.Value;
                 toWrite.Add(Date.Year.ToString());
@@ -168,12 +168,12 @@ namespace What_day_is_it
             }
             else
             {
-                toWrite.Add(Default.FalseString);
+                toWrite.Add(Data.FalseString);
             }
 
             if (myCheckBox.Checked)
             {
-                toWrite.Add(Default.TrueString);
+                toWrite.Add(Data.TrueString);
 
                 DateTime Date = myTime.Value;
                 toWrite.Add(Date.Year.ToString());
@@ -182,11 +182,13 @@ namespace What_day_is_it
             }
             else
             {
-                toWrite.Add(Default.FalseString);
+                toWrite.Add(Data.FalseString);
             }
 
             Log.SaveButton();
-            Default.WriteSettings(toWrite);
+            Data.WriteSettings(toWrite);
+
+            Core.ShowMainWindow();
 
             Close();
         }
@@ -215,13 +217,13 @@ namespace What_day_is_it
 
         private void FirstStart_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Default.FirstStart)
+            if (Core.FirstStart)
             {
                 Application.Exit();
             }
             else
             {
-                Program.ShowMainWindow();
+                Core.ShowMainWindow();
             }
         }
     }

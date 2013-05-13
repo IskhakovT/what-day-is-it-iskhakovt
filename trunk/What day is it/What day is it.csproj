@@ -50,8 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core.cs" />
     <Compile Include="DateInfo.cs" />
-    <Compile Include="Default.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="FirstStart.cs">
       <SubType>Form</SubType>
     </Compile>
