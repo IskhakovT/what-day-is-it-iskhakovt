@@ -20,31 +20,87 @@ using System.Collections.Specialized;
 
 namespace What_day_is_it
 {
-    static class Default
+    static class Data
     {
         private static String AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         private static String CommonFolder = AppData + "/iskhakovt/What day is it/";
 
-        public static String SettingsFile = CommonFolder + "settings";
-        public static String DataFile = CommonFolder + "data";
-        public static String LogFile = CommonFolder + "log";
+        private static String _SettingsFile = CommonFolder + "settings";
+        private static String _DataFile = CommonFolder + "data";
+        private static String _LogFile = CommonFolder + "log";
 
-        public static DateTime Today = DateTime.Today;
+        public static String SettingsFile
+        {
+            get { return _SettingsFile; }
+        }
 
-        public static Boolean ImportantDateExists;
-        public static Boolean AnoterBirthdayExists;
-        public static Boolean YourBirthdayExists;
+        public static String DataFile
+        {
+            get { return _DataFile; }
+        }
 
-        public static DateTime ImportantDate;
-        public static DateTime AnoterBirthday;
-        public static DateTime YourBirthday;
+        public static String LogFile
+        {
+            get { return _LogFile; }
+        }
 
-        public static Boolean Sex;
+        private static Boolean _ImportantDateExists;
+        private static Boolean _AnoterBirthdayExists;
+        private static Boolean _YourBirthdayExists;
 
-        public static Boolean FirstStart = false;
+        public static Boolean ImportantDateExists
+        {
+            get { return _ImportantDateExists; }
+        }
 
-        public static Boolean ShowNotifications;
-        public static Boolean StartUpEnabled;
+        public static Boolean AnoterBirthdayExists
+        {
+            get { return _AnoterBirthdayExists; }
+        }
+
+        public static Boolean YourBirthdayExists
+        {
+            get { return _YourBirthdayExists; }
+        }
+
+        private static DateTime _ImportantDate;
+        private static DateTime _AnoterBirthday;
+        private static DateTime _YourBirthday;
+
+        public static DateTime ImportantDate
+        {
+            get { return _ImportantDate; }
+        }
+
+        public static DateTime AnoterBirthday
+        {
+            get { return _AnoterBirthday; }
+        }
+
+        public static DateTime YourBirthday
+        {
+            get { return _YourBirthday; }
+        }
+
+        private static Boolean _Sex;
+
+        public static Boolean Sex
+        {
+            get { return _Sex; }
+        }
+
+        private static Boolean _ShowNotifications;
+        private static Boolean _StartUpEnabled;
+
+        public static Boolean ShowNotifications
+        {
+            get { return _ShowNotifications; }
+        }
+
+        public static Boolean StartUpEnabled
+        {
+            get { return _StartUpEnabled; }
+        }
 
         public static void checkDirectory()
         {
@@ -71,11 +127,11 @@ namespace What_day_is_it
 
                     if (notifications == NotificationsOn)
                     {
-                        ShowNotifications = true;
+                        _ShowNotifications = true;
                     }
                     else if (notifications == NotificationsOff)
                     {
-                        ShowNotifications = false;
+                        _ShowNotifications = false;
                     }
                     else
                     {
@@ -87,11 +143,11 @@ namespace What_day_is_it
 
                     if (startUp == StartUpOn)
                     {
-                        StartUpEnabled = true;
+                        _StartUpEnabled = true;
                     }
                     else if (startUp == StartUpOff)
                     {
-                        StartUpEnabled = false;
+                        _StartUpEnabled = false;
                     }
                     else
                     {
@@ -105,18 +161,12 @@ namespace What_day_is_it
                 {
                     Log.WriteLog(ex.ToString());
 
-                    ShowNotifications = true;
-                    StartUpEnabled = true;
-
-                    SaveSettings();
+                    resetSettings();
                 }
             }
             else
             {
-                ShowNotifications = true;
-                StartUpEnabled = true;
-
-                SaveSettings();
+                resetSettings();
             }
         }
 
@@ -145,6 +195,26 @@ namespace What_day_is_it
             writeData.Close();
         }
 
+        private static void resetSettings()
+        {
+            _ShowNotifications = true;
+            _StartUpEnabled = true;
+
+            SaveSettings();
+        }
+
+        public static void invertNotifications()
+        {
+            _ShowNotifications = !_ShowNotifications;
+            SaveSettings();
+        }
+
+        public static void invertStartUp()
+        {
+            _StartUpEnabled = !_StartUpEnabled;
+            SaveSettings();
+        }
+
         private class InDate
         {
             private Boolean _Exists;
@@ -153,7 +223,7 @@ namespace What_day_is_it
             public InDate()
             {
                 _Exists = false;
-                _Date = Today;
+                _Date = Core.Today;
             }
 
             public InDate(DateTime Date)
@@ -185,11 +255,11 @@ namespace What_day_is_it
 
                     if (sex == BoyString)
                     {
-                        Sex = true;
+                        _Sex = true;
                     }
                     else if (sex == GirtString)
                     {
-                        Sex = false;
+                        _Sex = false;
                     }
                     else
                     {
@@ -200,20 +270,19 @@ namespace What_day_is_it
                     InDate GetDate;
 
                     GetDate = getDate(readData);
-                    ImportantDateExists = GetDate.Exists;
-                    ImportantDate = GetDate.Date;
+                    _ImportantDateExists = GetDate.Exists;
+                    _ImportantDate = GetDate.Date;
 
                     GetDate = getDate(readData);
-                    AnoterBirthdayExists = GetDate.Exists;
-                    AnoterBirthday = GetDate.Date;
+                    _AnoterBirthdayExists = GetDate.Exists;
+                    _AnoterBirthday = GetDate.Date;
 
                     GetDate = getDate(readData);
-                    YourBirthdayExists = GetDate.Exists;
-                    YourBirthday = GetDate.Date;
+                    _YourBirthdayExists = GetDate.Exists;
+                    _YourBirthday = GetDate.Date;
 
                     readData.Close();
 
-                    FirstStart = false;
                     return true;
                 }
                 catch (Exception ex)
@@ -242,7 +311,7 @@ namespace What_day_is_it
             {
                 Int32 year = Convert.ToInt32(readData.ReadLine());
 
-                if (year < 1900 || year > 2199)
+                if (year < minYear || year > maxYear)
                 {
                     readData.Close();
                     throw new Exception("Bad input in data file: bad input year " + year.ToString());
@@ -253,7 +322,7 @@ namespace What_day_is_it
 
                 DateTime input = new DateTime(year, month, day);
 
-                if ((Default.Today - input).Days < 0)
+                if ((Core.Today - input).Days < 0)
                 {
                     readData.Close();
                     throw new Exception("Bad input in data file: input date is after today");
@@ -271,7 +340,7 @@ namespace What_day_is_it
         public static void WriteSettings(StringCollection toWrite)
         {
             File.Create(DataFile).Close();
-            StreamWriter writeData = new StreamWriter(Default.DataFile);
+            StreamWriter writeData = new StreamWriter(Data.DataFile);
 
             for (Int32 i = 0; i < toWrite.Count; ++i)
             {
@@ -282,27 +351,37 @@ namespace What_day_is_it
             checkFile();
         }
 
-        public static void checkDate()
-        {
-            if (Default.Today.Year > maxYear)
-            {
-                throw new Exception("Today is too big date");
-            }
-        }
-
         private static String NotificationsOn =     "NOTIFICATIONS ON";
         private static String NotificationsOff =    "NOTIFICATIONS OFF";
         private static String StartUpOn =           "STARTUP ON";
         private static String StartUpOff =          "STARTUP OFF";
 
-        public static String BoyString =            "BOY";
-        public static String GirtString =           "GIRL";
-        public static String TrueString =           "TRUE";
-        public static String FalseString =          "FALSE";
+        private static String _BoyString =           "BOY";
+        private static String _GirtString =          "GIRL";
+        private static String _TrueString =          "TRUE";
+        private static String _FalseString =         "FALSE";
 
-        public static String BadArgs = "Bad arguments:\n";
-        public static String StartTray = "startup";
+        public static String BoyString
+        {
+            get { return _BoyString; }
+        }
 
+        public static String GirtString
+        {
+            get { return _GirtString; }
+        }
+
+        public static String TrueString
+        {
+            get { return _TrueString; }
+        }
+
+        public static String FalseString
+        {
+            get { return _FalseString; }
+        }
+
+        private static Int32 minYear = 1900;
         private static Int32 maxYear = 2199;
     }
 }

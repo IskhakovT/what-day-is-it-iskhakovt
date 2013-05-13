@@ -12,7 +12,7 @@ namespace What_day_is_it
     {
         public static void WriteLog(String message)
         {
-            StreamWriter writeLog = new StreamWriter(Default.LogFile, true);
+            StreamWriter writeLog = new StreamWriter(Data.LogFile, true);
             writeLog.Write(DateTime.Now.ToString() + Space + message);
             writeLog.WriteLine();
             writeLog.Close();
@@ -53,14 +53,19 @@ namespace What_day_is_it
             WriteLog("Saving settings");
         }
 
+        public static void ApplicationOpened()
+        {
+            WriteLog("Opened from tray");
+        }
+
         public static void ApplicationClosed()
         {
             WriteLog("Closed in tray");
         }
 
-        public static void ApplicationOpened()
+        public static void ApplicationExit()
         {
-            WriteLog("Opened from tray");
+            WriteLog("Closed in tray to exit");
         }
 
         public static void LogOut()

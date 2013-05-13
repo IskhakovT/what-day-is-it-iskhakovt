@@ -26,7 +26,7 @@ namespace What_day_is_it
 
         public static String noInfo()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "Ты ничего не указал!\nКак я могу работать?!\n";
             }
@@ -43,7 +43,7 @@ namespace What_day_is_it
 
         public static String partnerEarly()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "Вы не могли начать встречаться до того, как родилась твоя девушка!";
             }
@@ -55,7 +55,7 @@ namespace What_day_is_it
 
         public static String partnerExactBirthday()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "Вы не могли начать встречаться в день рождения твоей девушки!";
             }
@@ -67,7 +67,7 @@ namespace What_day_is_it
 
         public static String youEarly()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "Вы не могли начать встречаться до того, как ты родился!";
             }
@@ -140,7 +140,7 @@ namespace What_day_is_it
 
         public static String NoPartnerYet()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "Твоя девушка еще не родилась.\n";
             }
@@ -175,7 +175,7 @@ namespace What_day_is_it
 
         public static String Birthday(Int32 diff = 0)
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return girlBirthday(diff);
             }
@@ -227,7 +227,7 @@ namespace What_day_is_it
 
         public static String Appears()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "У тебя сегодня появилась девувшка!\n                   Поздравляю!!!\n";
             }
@@ -239,7 +239,7 @@ namespace What_day_is_it
 
         public static String noPartner()
         {
-            if (Default.Sex)
+            if (Data.Sex)
             {
                 return "У тебя нет девушки.\n";
             }

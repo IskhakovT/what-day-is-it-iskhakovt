@@ -21,7 +21,7 @@ namespace What_day_is_it
     {
         public static String getInformation(DateTime Date)
         {
-            if (!Default.ImportantDateExists && !Default.AnoterBirthdayExists && !Default.YourBirthdayExists)
+            if (!Data.ImportantDateExists && !Data.AnoterBirthdayExists && !Data.YourBirthdayExists)
             {
                 String shortResult = Vocabulary.noInfo() + Environment.NewLine;
 
@@ -59,11 +59,11 @@ namespace What_day_is_it
 
             String result = String.Empty;
 
-            if (Default.ImportantDateExists)
+            if (Data.ImportantDateExists)
             {
                 result += getDateInfo(Date);
 
-                Warning dayInfo = analyseNum(Diff(Default.ImportantDate, Date));
+                Warning dayInfo = analyseNum(Diff(Data.ImportantDate, Date));
 
                 if (dayInfo != Warning.None)
                 {
@@ -90,24 +90,24 @@ namespace What_day_is_it
                     result += microInfo + Environment.NewLine;
                 }
 
-                if (Date != Default.ImportantDate && (Date - Default.ImportantDate).Days < maxDaysInMonth)
+                if (Date != Data.ImportantDate && (Date - Data.ImportantDate).Days < maxDaysInMonth)
                 {
-                    if (Date.Month == Default.ImportantDate.Month || (Date.Day < Default.ImportantDate.Day))
+                    if (Date.Month == Data.ImportantDate.Month || (Date.Day < Data.ImportantDate.Day))
                     {
                         result += Vocabulary.LessMonth + Environment.NewLine;
                     }
                 }
             }
 
-            if (Default.AnoterBirthdayExists)
+            if (Data.AnoterBirthdayExists)
             {
-                if (Diff(Default.AnoterBirthday, Date) < 0)
+                if (Diff(Data.AnoterBirthday, Date) < 0)
                 {
                     result += Vocabulary.NoPartnerYet() + Environment.NewLine;
                 }
                 else
                 {
-                    DateTime toBirthday = Default.AnoterBirthday;
+                    DateTime toBirthday = Data.AnoterBirthday;
 
                     while (toBirthday.Year != Date.Year)
                     {
@@ -151,15 +151,15 @@ namespace What_day_is_it
                 }
             }
 
-            if (Default.YourBirthdayExists)
+            if (Data.YourBirthdayExists)
             {
-                if (Diff(Default.YourBirthday, Date) < 0)
+                if (Diff(Data.YourBirthday, Date) < 0)
                 {
                     result += Vocabulary.NoYouYet() + Environment.NewLine;
                 }
                 else
                 {
-                    DateTime toBirthday = Default.YourBirthday;
+                    DateTime toBirthday = Data.YourBirthday;
 
                     while (toBirthday.Year != Date.Year)
                     {
@@ -182,28 +182,28 @@ namespace What_day_is_it
         {
             String result = String.Empty;
 
-            if (Default.ImportantDateExists)
+            if (Data.ImportantDateExists)
             {
-                if (Date.Day == Default.ImportantDate.Day)
+                if (Date.Day == Data.ImportantDate.Day)
                 {
-                    Int32 yearDiff = Date.Year - Default.ImportantDate.Year;
+                    Int32 yearDiff = Date.Year - Data.ImportantDate.Year;
 
-                    if (Date.Month == Default.ImportantDate.Month)
+                    if (Date.Month == Data.ImportantDate.Month)
                     {
                         result += Vocabulary.exactYears(yearDiff);
                     }
                     else
                     {
-                        Int32 monthDiff = (Date.Month - Default.ImportantDate.Month) + yearDiff * 12;
+                        Int32 monthDiff = (Date.Month - Data.ImportantDate.Month) + yearDiff * 12;
                         result += Vocabulary.exactMonth(monthDiff);
                     }
                 }
 
-                DateInfo.Warning info = DateInfo.analyseNum(DateInfo.Diff(Default.ImportantDate, Date));
+                DateInfo.Warning info = DateInfo.analyseNum(DateInfo.Diff(Data.ImportantDate, Date));
 
                 if (info != DateInfo.Warning.None)
                 {
-                    result += Vocabulary.countDaysTime(DateInfo.Diff(Default.ImportantDate, Date));
+                    result += Vocabulary.countDaysTime(DateInfo.Diff(Data.ImportantDate, Date));
                     result += Vocabulary.Analyse(info);
                 }
 
@@ -212,9 +212,9 @@ namespace What_day_is_it
                 result += secondsAnalyse(Date);
             }
 
-            if (Default.AnoterBirthdayExists && DateInfo.Diff(Date, Default.AnoterBirthday) >= 0)
+            if (Data.AnoterBirthdayExists && DateInfo.Diff(Date, Data.AnoterBirthday) >= 0)
             {
-                DateTime toBirthday = Default.AnoterBirthday;
+                DateTime toBirthday = Data.AnoterBirthday;
 
                 while (toBirthday.Year != Date.Year)
                 {
@@ -236,9 +236,9 @@ namespace What_day_is_it
                 result += Vocabulary.HolidayText(getHoliday);
             }
 
-            if (Default.YourBirthdayExists && DateInfo.Diff(Date, Default.YourBirthday) >= 0)
+            if (Data.YourBirthdayExists && DateInfo.Diff(Date, Data.YourBirthday) >= 0)
             {
-                DateTime toBirthday = Default.YourBirthday;
+                DateTime toBirthday = Data.YourBirthday;
 
                 while (toBirthday.Year != Date.Year)
                 {
@@ -258,14 +258,14 @@ namespace What_day_is_it
 
         private static String getDateInfo(DateTime Date)
         {
-            if (!Default.ImportantDateExists)
+            if (!Data.ImportantDateExists)
             {
                 throw new Exception("getDateInfo was called, but ImportantDate doesn't exist");
             }
 
             String result = String.Empty;
 
-            Int32 days = Diff(Default.ImportantDate, Date);
+            Int32 days = Diff(Data.ImportantDate, Date);
 
             if (days == 0)
             {
@@ -283,17 +283,17 @@ namespace What_day_is_it
                 return result;
             }
 
-            if (Date.Day == Default.ImportantDate.Day)
+            if (Date.Day == Data.ImportantDate.Day)
             {
-                Int32 yearDiff = Date.Year - Default.ImportantDate.Year;
+                Int32 yearDiff = Date.Year - Data.ImportantDate.Year;
 
-                if (Date.Month == Default.ImportantDate.Month)
+                if (Date.Month == Data.ImportantDate.Month)
                 {
                     result += Vocabulary.exactYears(yearDiff) + Environment.NewLine;
                 }
                 else
                 {
-                    Int32 monthDiff = (Date.Month - Default.ImportantDate.Month) + yearDiff * monthInYear;
+                    Int32 monthDiff = (Date.Month - Data.ImportantDate.Month) + yearDiff * monthInYear;
                     result += Vocabulary.exactMonth(monthDiff) + Environment.NewLine;
                 }
             }
@@ -305,7 +305,7 @@ namespace What_day_is_it
         {
             String result = String.Empty;
 
-            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            if (Diff(Data.ImportantDate, Date) >= daysEnough)
             {
                 DateTime tryFind = Date;
                 Boolean found = false;
@@ -314,10 +314,10 @@ namespace What_day_is_it
                 {
                     tryFind = tryFind.AddHours(1);
 
-                    TimeSpan difference = tryFind - Default.ImportantDate;
+                    TimeSpan difference = tryFind - Data.ImportantDate;
 
                     Int32 hoursDiff = difference.Hours;
-                    hoursDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay;
+                    hoursDiff += Diff(Data.ImportantDate, tryFind) * hoursInDay;
 
                     Warning hoursInfo = analyseNum(hoursDiff);
 
@@ -337,7 +337,7 @@ namespace What_day_is_it
         {
             String result = String.Empty;
 
-            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            if (Diff(Data.ImportantDate, Date) >= daysEnough)
             {
                 DateTime tryFind = Date;
                 Boolean found = false;
@@ -346,10 +346,10 @@ namespace What_day_is_it
                 {
                     tryFind = tryFind.AddMinutes(1);
 
-                    TimeSpan difference = tryFind - Default.ImportantDate;
+                    TimeSpan difference = tryFind - Data.ImportantDate;
 
                     Int32 minutesDiff =  difference.Minutes + difference.Hours * minutesInHour;
-                    minutesDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay * minutesInHour;
+                    minutesDiff += Diff(Data.ImportantDate, tryFind) * hoursInDay * minutesInHour;
 
                     Warning minutesInfo = analyseNum(minutesDiff);
 
@@ -369,7 +369,7 @@ namespace What_day_is_it
         {
             String result = String.Empty;
 
-            if (Diff(Default.ImportantDate, Date) >= daysEnough)
+            if (Diff(Data.ImportantDate, Date) >= daysEnough)
             {
                 DateTime tryFind = Date;
                 Boolean found = false;
@@ -378,10 +378,10 @@ namespace What_day_is_it
                 {
                     tryFind = tryFind.AddSeconds(1);
 
-                    TimeSpan difference = tryFind - Default.ImportantDate;
+                    TimeSpan difference = tryFind - Data.ImportantDate;
 
                     Int32 secondsDiff = difference.Seconds + difference.Minutes * secondsInMinute + difference.Hours * minutesInHour * secondsInMinute;
-                    secondsDiff += Diff(Default.ImportantDate, tryFind) * hoursInDay * minutesInHour * secondsInMinute;
+                    secondsDiff += Diff(Data.ImportantDate, tryFind) * hoursInDay * minutesInHour * secondsInMinute;
 
                     Warning secondsInfo = analyseNum(secondsDiff);
 
@@ -421,7 +421,7 @@ namespace What_day_is_it
 
         private static Warning analyseNum(Int32 num)
         {
-            if (!Default.ImportantDateExists || num < daysEnough)
+            if (!Data.ImportantDateExists || num < daysEnough)
             {
                 return Warning.None;
             }
