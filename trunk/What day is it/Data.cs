@@ -115,7 +115,7 @@ namespace What_day_is_it
             }
         }
 
-        public static void LoadSettings()
+        public static void loadSettings()
         {
             if (File.Exists(SettingsFile))
             {
@@ -170,7 +170,7 @@ namespace What_day_is_it
             }
         }
 
-        public static void SaveSettings()
+        public static void saveSettings()
         {
             StreamWriter writeData = new StreamWriter(SettingsFile);
 
@@ -200,19 +200,19 @@ namespace What_day_is_it
             _ShowNotifications = true;
             _StartUpEnabled = true;
 
-            SaveSettings();
+            saveSettings();
         }
 
         public static void invertNotifications()
         {
             _ShowNotifications = !_ShowNotifications;
-            SaveSettings();
+            saveSettings();
         }
 
         public static void invertStartUp()
         {
             _StartUpEnabled = !_StartUpEnabled;
-            SaveSettings();
+            saveSettings();
         }
 
         private class InDate
@@ -243,7 +243,7 @@ namespace What_day_is_it
             }
         }
 
-        public static Boolean checkFile()
+        public static Boolean loadData()
         {
             if (File.Exists(DataFile))
             {
@@ -337,7 +337,7 @@ namespace What_day_is_it
             }
         }
 
-        public static void WriteSettings(StringCollection toWrite)
+        public static void saveData(StringCollection toWrite)
         {
             File.Create(DataFile).Close();
             StreamWriter writeData = new StreamWriter(Data.DataFile);
@@ -348,7 +348,7 @@ namespace What_day_is_it
             }
 
             writeData.Close();
-            checkFile();
+            loadData();
         }
 
         private static String NotificationsOn =     "NOTIFICATIONS ON";

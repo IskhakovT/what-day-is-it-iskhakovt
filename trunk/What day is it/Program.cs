@@ -15,7 +15,7 @@
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
  *          Release date:   13th of May 2013                                                    *
- *          Version:        1.17.25                                                             *
+ *          Version:        1.17.28                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -60,7 +60,7 @@ namespace What_day_is_it
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                Process process = Core.RunningInstance();
+                Process process = Core.runningInstance();
 
                 if (process != null)
                 {
@@ -72,7 +72,7 @@ namespace What_day_is_it
                 Core.setToday();
 
                 Data.checkDirectory();
-                Data.LoadSettings();
+                Data.loadSettings();
 
                 Boolean normalLog = Core.checkArgs(Args);
 
@@ -84,9 +84,7 @@ namespace What_day_is_it
                     return;
                 }
 
-                Core.Initialize();
-
-                if (Data.checkFile())
+                if (Data.loadData())
                 {
                     if (normalLog)
                     {
@@ -94,13 +92,16 @@ namespace What_day_is_it
 
                         Log.ApplicationOpened();
 
-                        Core.mainWindow.Show();
+                        Core.Initialize();
+                        Core.showMainWindow();
 
                         Application.Run();
                     }
                     else
                     {
                         Log.LogInTray();
+
+                        Core.Initialize();
 
                         Application.Run();
                     }
@@ -110,7 +111,7 @@ namespace What_day_is_it
                     Log.LogIn();
                     Log.FirstSettingsOpened();
 
-                    Core.FirstStart = true;
+                    Core.SettingNotSaved = true;
 
                     FirstStart Start = new FirstStart();
                     Start.Show();
@@ -124,7 +125,7 @@ namespace What_day_is_it
             {
                 Log.WriteLog(ex.ToString());
 
-                MessageBox.Show(ex.Message, Vocabulary.CriticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Vocabulary.criticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Log.LogOut();
             }

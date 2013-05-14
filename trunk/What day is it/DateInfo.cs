@@ -25,23 +25,23 @@ namespace What_day_is_it
             {
                 String shortResult = Vocabulary.noInfo() + Environment.NewLine;
 
-                Holidays.HolidayEvent shortGetHoliday = Holidays.analyseHoliday(Date);
+                Holidays.HolidayEvent shortGetHoliday = Holidays.findHoliday(Date);
 
                 if (shortGetHoliday.Holiday != Holidays.HolidayType.None)
                 {
-                    shortResult += Vocabulary.HolidayText(shortGetHoliday) + Environment.NewLine;
+                    shortResult += Vocabulary.holidayText(shortGetHoliday) + Environment.NewLine;
                 }
 
                 if (Date.Month == monthFebruary)
                 {
                     if (Date.Day > (dayMen - daysAlert) && Date.Day < (dayMen - 1))
                     {
-                        shortResult += Vocabulary.MenDay(dayMen - Date.Day) + Environment.NewLine;
+                        shortResult += Vocabulary.menDay(dayMen - Date.Day) + Environment.NewLine;
                     }
 
                     if (Date.Day > (dayValentine - daysAlert) && Date.Day < (dayValentine - 1))
                     {
-                        shortResult += Vocabulary.Valentine(dayValentine - Date.Day) + Environment.NewLine;
+                        shortResult += Vocabulary.valentine(dayValentine - Date.Day) + Environment.NewLine;
                     }
                 }
 
@@ -49,7 +49,7 @@ namespace What_day_is_it
                 {
                     if (Date.Day > (dayWomen - daysAlert) && Date.Day < (dayWomen - 1))
                     {
-                        shortResult += Vocabulary.WomenDay(dayWomen - Date.Day) + Environment.NewLine;
+                        shortResult += Vocabulary.womenDay(dayWomen - Date.Day) + Environment.NewLine;
                     }
                 }
 
@@ -68,6 +68,14 @@ namespace What_day_is_it
                 if (dayInfo != Warning.None)
                 {
                     result += Vocabulary.Analyse(dayInfo) + Environment.NewLine;
+                }
+
+                if (Date != Data.ImportantDate && (Date - Data.ImportantDate).Days < maxDaysInMonth)
+                {
+                    if (Date.Month == Data.ImportantDate.Month || (Date.Day < Data.ImportantDate.Day))
+                    {
+                        result += Vocabulary.lessMonth() + Environment.NewLine;
+                    }
                 }
 
                 String microInfo;
@@ -89,21 +97,13 @@ namespace What_day_is_it
                 {
                     result += microInfo + Environment.NewLine;
                 }
-
-                if (Date != Data.ImportantDate && (Date - Data.ImportantDate).Days < maxDaysInMonth)
-                {
-                    if (Date.Month == Data.ImportantDate.Month || (Date.Day < Data.ImportantDate.Day))
-                    {
-                        result += Vocabulary.LessMonth + Environment.NewLine;
-                    }
-                }
             }
 
             if (Data.AnoterBirthdayExists)
             {
                 if (Diff(Data.AnoterBirthday, Date) < 0)
                 {
-                    result += Vocabulary.NoPartnerYet() + Environment.NewLine;
+                    result += Vocabulary.noPartnerYet() + Environment.NewLine;
                 }
                 else
                 {
@@ -118,28 +118,28 @@ namespace What_day_is_it
 
                     if (diff > daysAlertBirthday && diff < daysAlert)
                     {
-                        result += Vocabulary.Birthday(diff) + Environment.NewLine;
+                        result += Vocabulary.birthday(diff) + Environment.NewLine;
                     }
                 }
             }
 
-            Holidays.HolidayEvent getHoliday = Holidays.analyseHoliday(Date);
+            Holidays.HolidayEvent getHoliday = Holidays.findHoliday(Date);
 
             if (getHoliday.Holiday != Holidays.HolidayType.None)
             {
-                result += Vocabulary.HolidayText(getHoliday) + Environment.NewLine;
+                result += Vocabulary.holidayText(getHoliday) + Environment.NewLine;
             }
 
             if (Date.Month == monthFebruary)
             {
                 if (Date.Day > (dayMen - daysAlert) && Date.Day < (dayMen - 1))
                 {
-                    result += Vocabulary.MenDay(dayMen - Date.Day) + Environment.NewLine;
+                    result += Vocabulary.menDay(dayMen - Date.Day) + Environment.NewLine;
                 }
 
                 if (Date.Day > (dayValentine - daysAlert) && Date.Day < (dayValentine - 1))
                 {
-                    result += Vocabulary.Valentine(dayValentine - Date.Day) + Environment.NewLine;
+                    result += Vocabulary.valentine(dayValentine - Date.Day) + Environment.NewLine;
                 }
             }
 
@@ -147,7 +147,7 @@ namespace What_day_is_it
             {
                 if (Date.Day > (dayWomen - daysAlert) && Date.Day < (dayWomen - 1))
                 {
-                    result += Vocabulary.WomenDay(dayWomen - Date.Day) + Environment.NewLine;
+                    result += Vocabulary.womenDay(dayWomen - Date.Day) + Environment.NewLine;
                 }
             }
 
@@ -155,7 +155,7 @@ namespace What_day_is_it
             {
                 if (Diff(Data.YourBirthday, Date) < 0)
                 {
-                    result += Vocabulary.NoYouYet() + Environment.NewLine;
+                    result += Vocabulary.noYouYet() + Environment.NewLine;
                 }
                 else
                 {
@@ -225,15 +225,15 @@ namespace What_day_is_it
 
                 if (diff == 0)
                 {
-                    result += Vocabulary.Birthday();
+                    result += Vocabulary.birthday();
                 }
             }
 
-            Holidays.HolidayEvent getHoliday = Holidays.analyseHoliday(Date);
+            Holidays.HolidayEvent getHoliday = Holidays.findHoliday(Date);
 
             if (getHoliday.Holiday != Holidays.HolidayType.None && getHoliday.Today)
             {
-                result += Vocabulary.HolidayText(getHoliday);
+                result += Vocabulary.holidayText(getHoliday);
             }
 
             if (Data.YourBirthdayExists && DateInfo.Diff(Date, Data.YourBirthday) >= 0)
@@ -269,7 +269,7 @@ namespace What_day_is_it
 
             if (days == 0)
             {
-                return Vocabulary.Appears() + Environment.NewLine;
+                return Vocabulary.gotPartner() + Environment.NewLine;
             }
             else if (days < 0)
             {

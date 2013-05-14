@@ -29,7 +29,7 @@ namespace What_day_is_it
         {
             InitializeComponent();
 
-            if (!Core.FirstStart)
+            if (!Core.SettingNotSaved)
             {
                 if (Data.Sex)
                 {
@@ -186,9 +186,19 @@ namespace What_day_is_it
             }
 
             Log.SaveButton();
-            Data.WriteSettings(toWrite);
 
-            Core.ShowMainWindow();
+            Data.saveData(toWrite);
+            Data.loadData();
+
+            if (Core.SettingNotSaved)
+            {
+                Core.SettingNotSaved = false;
+                Core.Initialize();
+            }
+            else
+            {
+                Core.settingsClosed();
+            }
 
             Close();
         }
@@ -217,13 +227,14 @@ namespace What_day_is_it
 
         private void FirstStart_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Core.FirstStart)
+            if (Core.SettingNotSaved)
             {
                 Application.Exit();
             }
             else
             {
-                Core.ShowMainWindow();
+                Core.Initialize();
+                Core.showMainWindow();
             }
         }
     }
