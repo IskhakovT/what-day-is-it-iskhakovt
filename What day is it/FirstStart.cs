@@ -188,12 +188,11 @@ namespace What_day_is_it
             Log.SaveButton();
 
             Data.saveData(toWrite);
-            Data.loadData();
 
             if (Core.SettingNotSaved)
             {
                 Core.SettingNotSaved = false;
-                Core.Initialize();
+                Core.initialize();
             }
             else
             {
@@ -233,7 +232,6 @@ namespace What_day_is_it
             }
             else
             {
-                Core.Initialize();
                 Core.showMainWindow();
             }
         }
