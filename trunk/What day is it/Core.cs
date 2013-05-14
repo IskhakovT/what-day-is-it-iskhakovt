@@ -27,7 +27,7 @@ namespace What_day_is_it
 
         private static DateTime _Today;
 
-        public static void Initialize()
+        public static void initialize()
         {
             if (MainWindow == null)
             {
@@ -61,7 +61,7 @@ namespace What_day_is_it
         {
             if (MainWindow == null)
             {
-                throw new Exception("Settings tried to say null Window that they are closed");
+                throw new Exception("Settings tried to call null Window");
             }
 
             MainWindow.settingsOpened = false;

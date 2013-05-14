@@ -89,20 +89,17 @@ namespace What_day_is_it
                     if (normalLog)
                     {
                         Log.LogIn();
-
                         Log.ApplicationOpened();
 
-                        Core.Initialize();
+                        Core.initialize();
                         Core.showMainWindow();
-
                         Application.Run();
                     }
                     else
                     {
                         Log.LogInTray();
 
-                        Core.Initialize();
-
+                        Core.initialize();
                         Application.Run();
                     }
                 }
@@ -115,7 +112,6 @@ namespace What_day_is_it
 
                     FirstStart Start = new FirstStart();
                     Start.Show();
-
                     Application.Run();
                 }
 
