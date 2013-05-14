@@ -70,6 +70,7 @@ namespace What_day_is_it
                 }
 
                 Core.setToday();
+
                 Data.checkDirectory();
                 Data.LoadSettings();
 
