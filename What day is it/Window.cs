@@ -27,26 +27,40 @@ namespace What_day_is_it
         {
             InitializeComponent();
 
+            Core.setToday();
+
             notifyIcon.ContextMenuStrip = contextMenuStrip;
 
             timer.Start();
 
             dateTimePicker.Value = Core.Today;
 
-            UpdateContexText();
+            updateContexText();
+            updateData();
+        }
 
-            if (!Core.FirstStart)
+        public void updateData()
+        {
+            Core.setToday();
+
+            todayLabel.Text = Vocabulary.today() + Core.Today.ToLongDateString();
+            todayInfo.Text = DateInfo.getInformation(Core.Today);
+
+            if (Data.ShowNotifications && todayInfo.Text != String.Empty)
             {
-                newDay();
+                showBalloonList.Add(new ToShow(Core.Today.ToLongDateString(), todayInfo.Text));
+            }
 
-                if (showBalloonList.Count > 0)
-                {
-                    showFirstBalloon();
-                }
+            getCloseInfo();
+            changeAnyDay();
+
+            if (showBalloonList.Count > 0)
+            {
+                showFirstBalloon();
             }
         }
 
-        private void UpdateContexText()
+        private void updateContexText()
         {
             contextMenuStrip.Items[contextNotificationItem].Text = Vocabulary.contextNotifications(Data.ShowNotifications);
             contextMenuStrip.Items[contextStartUpItem].Text = Vocabulary.contextStartUp(Data.StartUpEnabled);
@@ -93,11 +107,11 @@ namespace What_day_is_it
                 {
                     if (Data.ShowNotifications)
                     {
-                        showBalloonList.Add(new ToShow(Vocabulary.Soon() + find.ToLongDateString(), add));
+                        showBalloonList.Add(new ToShow(Vocabulary.soon() + find.ToLongDateString(), add));
                     }
 
                     add = find.ToLongDateString() + Environment.NewLine + add;
-                    AddLabel(push, add);
+                    addLabel(push, add);
 
                     if (push == Push.One)
                     {
@@ -131,7 +145,7 @@ namespace What_day_is_it
             }
         }
 
-        private void AddLabel(Push push, String info)
+        private void addLabel(Push push, String info)
         {
             switch (push)
             {
@@ -207,6 +221,8 @@ namespace What_day_is_it
 
             Visible = false;
 
+            showBalloonList.Clear();
+
             FirstStart newSettings = new FirstStart();
             newSettings.Visible = true;
 
@@ -223,27 +239,11 @@ namespace What_day_is_it
 
         private static Boolean saveClosingForm = true;
 
-        public void newDay()
-        {
-            Core.setToday();
-
-            todayLabel.Text = Vocabulary.Today() + Core.Today.ToLongDateString();
-            todayInfo.Text = DateInfo.getInformation(Core.Today);
-
-            if (Data.ShowNotifications && todayInfo.Text != String.Empty)
-            {
-                showBalloonList.Add(new ToShow(Core.Today.ToLongDateString(), todayInfo.Text));
-            }
-
-            getCloseInfo();
-            changeAnyDay();
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             if (DateTime.Today != Core.Today)
             {
-                newDay();
+                updateData();
             }
         }
 
@@ -283,14 +283,14 @@ namespace What_day_is_it
         {
             Data.invertNotifications();
 
-            UpdateContexText();
+            updateContexText();
         }
 
         private void startupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Data.invertStartUp();
 
-            UpdateContexText();
+            updateContexText();
         }
     }
 }

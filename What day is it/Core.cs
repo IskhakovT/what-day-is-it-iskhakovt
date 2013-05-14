@@ -21,26 +21,24 @@ namespace What_day_is_it
 {
     static class Core
     {
-        private static Window _MainWindow;
+        private static Window MainWindow = null;
 
-        private static Boolean _FirstStart = false;
+        private static Boolean _SettingNotSaved = false;
 
         private static DateTime _Today;
 
-        public static Window mainWindow
-        {
-            get { return _MainWindow; }
-        }
-
         public static void Initialize()
         {
-            _MainWindow = new Window();
+            if (MainWindow == null)
+            {
+                MainWindow = new Window();
+            }
         }
 
-        public static Boolean FirstStart
+        public static Boolean SettingNotSaved
         {
-            get { return _FirstStart; }
-            set { _FirstStart = value; }
+            get { return _SettingNotSaved; }
+            set { _SettingNotSaved = value; }
         }
 
         public static DateTime Today
@@ -48,17 +46,28 @@ namespace What_day_is_it
             get { return _Today; }
         }
 
-        public static void ShowMainWindow()
+        public static void showMainWindow()
         {
-            FirstStart = false;
+            if (MainWindow == null)
+            {
+                throw new Exception("Tried to show null Window");
+            }
 
-            mainWindow.settingsOpened = false;
-            mainWindow.newDay();
-
-            mainWindow.showForm();
+            MainWindow.updateData();
+            MainWindow.Show();
         }
 
-        public static Process RunningInstance()
+        public static void settingsClosed()
+        {
+            if (MainWindow == null)
+            {
+                throw new Exception("Settings tried to say null Window that they are closed");
+            }
+
+            MainWindow.settingsOpened = false;
+        }
+
+        public static Process runningInstance()
         {
             Process current = Process.GetCurrentProcess();
             Process[] processes = Process.GetProcessesByName(current.ProcessName);

@@ -19,7 +19,7 @@ namespace What_day_is_it
 {
     static class Vocabulary
     {
-        public static String Today()
+        public static String today()
         {
             return "Между прочим, сегодня ";
         }
@@ -123,22 +123,22 @@ namespace What_day_is_it
             }
         }
 
-        public static String Valentine(Int32 diff = 0)
+        public static String valentine(Int32 diff = 0)
         {
-            return "До для святого Валентина осталось " + diff + " " + Vocabulary.Day(diff) + ".\n";
+            return "До для святого Валентина осталось " + diff + " " + Vocabulary.day(diff) + ".\n";
         }
 
-        public static String MenDay(Int32 diff = 0)
+        public static String menDay(Int32 diff = 0)
         {
-            return "До дня защитника отечества осталось " + diff + " " + Day(diff) + ".\n";
+            return "До дня защитника отечества осталось " + diff + " " + day(diff) + ".\n";
         }
 
-        public static String WomenDay(Int32 diff = 0)
+        public static String womenDay(Int32 diff = 0)
         {
-            return "До международного женского дня осталось " + diff + " " + Day(diff) + ".\n";
+            return "До международного женского дня осталось " + diff + " " + day(diff) + ".\n";
         }
 
-        public static String NoPartnerYet()
+        public static String noPartnerYet()
         {
             if (Data.Sex)
             {
@@ -150,7 +150,7 @@ namespace What_day_is_it
             }
         }
 
-        public static String NoYouYet()
+        public static String noYouYet()
         {
             return "Ты еще не родился.\n";
         }
@@ -173,7 +173,7 @@ namespace What_day_is_it
             throw new Exception("Birthday difference is too big");
         }
 
-        public static String Birthday(Int32 diff = 0)
+        public static String birthday(Int32 diff = 0)
         {
             if (Data.Sex)
             {
@@ -201,7 +201,7 @@ namespace What_day_is_it
             }
             else
             {
-                return "День рождения твоей девушки через " + diff + " " + Day(diff) + ".\n";
+                return "День рождения твоей девушки через " + diff + " " + day(diff) + ".\n";
             }
         }
 
@@ -221,11 +221,11 @@ namespace What_day_is_it
             }
             else
             {
-                return "День рождения твоего парня через " + diff + " " + Day(diff) + ".\n";
+                return "День рождения твоего парня через " + diff + " " + day(diff) + ".\n";
             }
         }
 
-        public static String Appears()
+        public static String gotPartner()
         {
             if (Data.Sex)
             {
@@ -251,37 +251,40 @@ namespace What_day_is_it
 
         public static String countDaysTime(Int32 num)
         {
-            return "Вы встречаетесь уже " + num + " " + Day(num) + ".\n";
+            return "Вы встречаетесь уже " + num + " " + day(num) + ".\n";
         }
 
         public static String countHoursTime(Int32 num)
         {
-            return "Вы встречаетесь уже " + num + " " + Hour(num) + ".\n";
+            return "Вы встречаетесь уже " + num + " " + hour(num) + ".\n";
         }
 
         public static String countMinutesTime(Int32 num)
         {
-            return "Вы встречаетесь уже " + num + " " + Minute(num) + ".\n";
+            return "Вы встречаетесь уже " + num + " " + minute(num) + ".\n";
         }
 
         public static String countSecondsTime(Int32 num)
         {
-            return "Вы встречаетесь уже " + num + " " + Second(num) + ".\n";
+            return "Вы встречаетесь уже " + num + " " + second(num) + ".\n";
         }
 
-        public static String LessMonth = "Это меньше месяца...\n";
-
-        public static String exactYears(Int32 years)
+        public static String lessMonth()
         {
-            return "Вы встречаетесь ровно " + years + " " + Year(years) + "!\n";
+         return "Это меньше месяца...\n";
         }
 
-        public static String exactMonth(Int32 month)
+        public static String exactYears(Int32 num)
         {
-            return "Вы встречаетесь ровно " + month + " " + Month(month) + ".\n";
+            return "Вы встречаетесь ровно " + num + " " + year(num) + "!\n";
         }
 
-        private static String Year(Int32 num)
+        public static String exactMonth(Int32 num)
+        {
+            return "Вы встречаетесь ровно " + num + " " + month(num) + ".\n";
+        }
+
+        private static String year(Int32 num)
         {
             if (num <= 0)
             {
@@ -304,7 +307,7 @@ namespace What_day_is_it
             }
         }
 
-        private static String Month(Int32 num)
+        private static String month(Int32 num)
         {
             if (num <= 0)
             {
@@ -327,7 +330,7 @@ namespace What_day_is_it
             }
         }
 
-        private static String Day(Int32 num)
+        private static String day(Int32 num)
         {
             if (num <= 0)
             {
@@ -350,7 +353,7 @@ namespace What_day_is_it
             }
         }
 
-        private static String Hour(Int32 num)
+        private static String hour(Int32 num)
         {
             if (num <= 0)
             {
@@ -373,7 +376,7 @@ namespace What_day_is_it
             }
         }
 
-        private static String Minute(Int32 num)
+        private static String minute(Int32 num)
         {
             if (num <= 0)
             {
@@ -396,7 +399,7 @@ namespace What_day_is_it
             }
         }
 
-        private static String Second(Int32 num)
+        private static String second(Int32 num)
         {
             if (num <= 0)
             {
@@ -419,7 +422,7 @@ namespace What_day_is_it
             }
         }
 
-        public static String CriticalError()
+        public static String criticalError()
         {
             return "Критическая ошибка";
         }
@@ -434,7 +437,7 @@ namespace What_day_is_it
             return "Больше важных событий нет\n";
         }
 
-        public static String HolidayText(Holidays.HolidayEvent Event)
+        public static String holidayText(Holidays.HolidayEvent Event)
         {
             if (Event.Holiday == Holidays.HolidayType.None)
             {
@@ -484,7 +487,7 @@ namespace What_day_is_it
             return result;
         }
 
-        public static String Soon()
+        public static String soon()
         {
             return "Скоро ";
         }
