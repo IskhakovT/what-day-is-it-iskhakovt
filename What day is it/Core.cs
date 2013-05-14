@@ -1,12 +1,21 @@
-﻿using System;
+﻿/*************************************************
+ *                                               *
+ *     What day is it?                           *
+ *                                               *
+ *     Author: Timur Iskhakov                    *
+ *     E-mail: iskhakovt@gmail.com               *
+ *                                               *
+ *************************************************/
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using System.Diagnostics;
-using System.Reflection;
-using System.Windows.Forms;
 
 namespace What_day_is_it
 {
