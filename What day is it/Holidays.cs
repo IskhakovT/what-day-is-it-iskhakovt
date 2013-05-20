@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*************************************************
+ *                                               *
+ *     What day is it?                           *
+ *                                               *
+ *     Author: Timur Iskhakov                    *
+ *     E-mail: iskhakovt@gmail.com               *
+ *                                               *
+ *************************************************/
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

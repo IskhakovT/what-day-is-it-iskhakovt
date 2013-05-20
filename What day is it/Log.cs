@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*************************************************
+ *                                               *
+ *     What day is it?                           *
+ *                                               *
+ *     Author: Timur Iskhakov                    *
+ *     E-mail: iskhakovt@gmail.com               *
+ *                                               *
+ *************************************************/
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +28,8 @@ namespace What_day_is_it
             writeLog.WriteLine();
             writeLog.Close();
         }
+
+        #region Logs
 
         public static void LogIn()
         {
@@ -72,6 +85,8 @@ namespace What_day_is_it
         {
             WriteLog("Log out\n");
         }
+
+        #endregion
 
         private static String Space = " ";
     }

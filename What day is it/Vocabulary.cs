@@ -284,6 +284,8 @@ namespace What_day_is_it
             return "Вы встречаетесь ровно " + num + " " + month(num) + ".\n";
         }
 
+        #region Words
+
         private static String year(Int32 num)
         {
             if (num <= 0)
@@ -421,6 +423,8 @@ namespace What_day_is_it
                 return "секунды";
             }
         }
+
+        #endregion
 
         public static String criticalError()
         {

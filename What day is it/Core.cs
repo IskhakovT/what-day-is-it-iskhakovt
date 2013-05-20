@@ -16,56 +16,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace What_day_is_it
 {
     static class Core
     {
-        private static Window MainWindow = null;
-
-        private static Boolean _SettingNotSaved = false;
+        #region Today
 
         private static DateTime _Today;
-
-        public static void initialize()
-        {
-            if (MainWindow == null)
-            {
-                MainWindow = new Window();
-            }
-        }
-
-        public static Boolean SettingNotSaved
-        {
-            get { return _SettingNotSaved; }
-            set { _SettingNotSaved = value; }
-        }
 
         public static DateTime Today
         {
             get { return _Today; }
         }
 
-        public static void showMainWindow()
+        public static void setToday()
         {
-            if (MainWindow == null)
+            if (DateTime.Today.Year > maxTodayYear)
             {
-                throw new Exception("Tried to show null Window");
+                throw new Exception("Today is too big date");
             }
 
-            MainWindow.updateData();
-            MainWindow.Show();
+            _Today = DateTime.Today;
         }
 
-        public static void settingsClosed()
-        {
-            if (MainWindow == null)
-            {
-                throw new Exception("Settings tried to call null Window");
-            }
-
-            MainWindow.settingsOpened = false;
-        }
+        #endregion
 
         public static Process runningInstance()
         {
@@ -106,19 +82,13 @@ namespace What_day_is_it
             }
         }
 
-        public static void setToday()
-        {
-            if (DateTime.Today.Year > maxTodayYear)
-            {
-                throw new Exception("Today is too big date");
-            }
-
-            _Today = DateTime.Today;
-        }
+        #region Constants
 
         private static String BadArgs = "Bad arguments:\n";
         private static String StartTray = "startup";
 
         private static Int32 maxTodayYear = 2199;
+
+        #endregion
     }
 }

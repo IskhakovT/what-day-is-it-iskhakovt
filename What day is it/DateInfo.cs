@@ -19,6 +19,8 @@ namespace What_day_is_it
 {
     public static class DateInfo
     {
+        #region Public analyse
+
         public static String getInformation(DateTime Date)
         {
             if (!Data.ImportantDateExists && !Data.AnoterBirthdayExists && !Data.YourBirthdayExists)
@@ -301,6 +303,10 @@ namespace What_day_is_it
             return result;
         }
 
+        #endregion
+
+        #region Micro analyse
+
         private static String hoursAnalyse(DateTime Date)
         {
             String result = String.Empty;
@@ -412,10 +418,14 @@ namespace What_day_is_it
             return (info == Warning.DivBillion || info == Warning.DivHundredMillion || info == Warning.DivTenMillion || info == Warning.DivMillion);
         }
 
+        #endregion
+
         private static Int32 Diff(DateTime First, DateTime Second)
         {
             return (Second - First).Days;
         }
+
+        #region Numbers analyse
 
         public enum Warning { DivBillion, DivHundredMillion, DivTenMillion, DivMillion, DivHundredThousand, DivTenThousand, DivThousand, DivHundred, EqualSymbols, Symmetric, EqualDiff, None };
 
@@ -519,6 +529,10 @@ namespace What_day_is_it
             return Warning.None;
         }
 
+        #endregion
+
+        #region Constants
+
         private static Int32 monthFebruary =        2;
         private static Int32 monthMarch =           3;
         private static Int32 dayValentine =         14;
@@ -545,6 +559,8 @@ namespace What_day_is_it
         private static Int32 hundredMillion =       100000000;
         private static Int32 billion =              1000000000;
 
-        private static String moreMicroInfo = ": "; 
+        private static String moreMicroInfo = ": ";
+
+        #endregion
     }
 }

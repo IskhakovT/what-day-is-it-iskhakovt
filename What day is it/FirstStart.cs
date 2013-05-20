@@ -25,11 +25,13 @@ namespace What_day_is_it
 {
     public partial class FirstStart : Form
     {
-        public FirstStart()
+        public FirstStart(Boolean firstTime = false)
         {
             InitializeComponent();
 
-            if (!Core.SettingNotSaved)
+            SettingNotSaved = firstTime;
+
+            if (!SettingNotSaved)
             {
                 if (Data.Sex)
                 {
@@ -75,6 +77,8 @@ namespace What_day_is_it
                 myTime.MaxDate = Core.Today;
             }
         }
+
+        private Boolean SettingNotSaved;
 
         private void dateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -189,15 +193,7 @@ namespace What_day_is_it
 
             Data.saveData(toWrite);
 
-            if (Core.SettingNotSaved)
-            {
-                Core.SettingNotSaved = false;
-                Core.initialize();
-            }
-            else
-            {
-                Core.settingsClosed();
-            }
+            SettingNotSaved = false;
 
             Close();
         }
@@ -226,13 +222,13 @@ namespace What_day_is_it
 
         private void FirstStart_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Core.SettingNotSaved)
+            if (SettingNotSaved)
             {
                 Application.Exit();
             }
             else
             {
-                Core.showMainWindow();
+                Windows.settingsClosed();
             }
         }
     }
