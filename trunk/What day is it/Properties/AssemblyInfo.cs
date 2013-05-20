@@ -44,6 +44,6 @@ using System.Resources;
 // Можно задать все значения или принять номер построения и номер редакции по умолчанию, 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.17.28")]
-[assembly: AssemblyFileVersion("1.17.28")]
+[assembly: AssemblyVersion("1.19.35")]
+[assembly: AssemblyFileVersion("1.19.35")]
 [assembly: NeutralResourcesLanguageAttribute("ru")]

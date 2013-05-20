@@ -2,20 +2,20 @@
  *                                                                                              *
  *                                        What day is it?                                       *
  *                                                                                              *
- *                    This program was made to help people with relations to                    *
- *                         make people able to answer a silly question                          *
+ *                     This program was made to help people with relations                      *
+ *                                 able to answer a silly question                              *
  *                                       "What day is it?"                                      *
  *                                                                                              *
  *                                                                                              *
  *          Author:         Timur Iskhakov                                                      *
  *          E-mail:         iskhakovt@gmail.com                                                 *
  *          VK:             https://vk.com/iskhakovt                                            *
- *          Facebook:       https://www.facebook.com/iskhakovt                                  *
+ *          Facebook:       https://facebook.com/iskhakovt                                      *
  *                                                                                              *
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
- *          Release date:   13th of May 2013                                                    *
- *          Version:        1.17.28                                                             *
+ *          Release date:   21st of May 2013                                                    *
+ *          Version:        1.19.35                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -60,6 +60,8 @@ namespace What_day_is_it
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                #region Initialization
+
                 Process process = Core.runningInstance();
 
                 if (process != null)
@@ -74,6 +76,9 @@ namespace What_day_is_it
                 Data.checkDirectory();
                 Data.loadSettings();
 
+                ApplicationWindow = new CoreWindow();
+                Windows.initializeTimer();
+
                 Boolean normalLog = Core.checkArgs(Args);
 
                 if (!normalLog && !Data.StartUpEnabled)
@@ -84,23 +89,23 @@ namespace What_day_is_it
                     return;
                 }
 
+                #endregion
+
                 if (Data.loadData())
                 {
                     if (normalLog)
                     {
                         Log.LogIn();
-                        Log.ApplicationOpened();
 
-                        Core.initialize();
-                        Core.showMainWindow();
-                        Application.Run();
+                        ApplicationWindow.Start();
+                        Application.Run(ApplicationWindow);
                     }
                     else
                     {
                         Log.LogInTray();
 
-                        Core.initialize();
-                        Application.Run();
+                        ApplicationWindow.Start(CoreWindow.StartParameter.InTray);
+                        Application.Run(ApplicationWindow);
                     }
                 }
                 else
@@ -108,11 +113,8 @@ namespace What_day_is_it
                     Log.LogIn();
                     Log.FirstSettingsOpened();
 
-                    Core.SettingNotSaved = true;
-
-                    FirstStart Start = new FirstStart();
-                    Start.Show();
-                    Application.Run();
+                    ApplicationWindow.Start(CoreWindow.StartParameter.FirstStart);
+                    Application.Run(ApplicationWindow);
                 }
 
                 Log.LogOut();
@@ -120,11 +122,21 @@ namespace What_day_is_it
             catch (Exception ex)
             {
                 Log.WriteLog(ex.ToString());
-
                 MessageBox.Show(ex.Message, Vocabulary.criticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 Log.LogOut();
             }
         }
+
+        #region ApplicationWindow
+
+        private static CoreWindow _ApplicationWindow;
+
+        public static CoreWindow ApplicationWindow
+        {
+            get { return _ApplicationWindow; }
+            set { _ApplicationWindow = value; }
+        }
+
+        #endregion
     }
 }

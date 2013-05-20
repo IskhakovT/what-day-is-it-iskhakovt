@@ -22,27 +22,23 @@ namespace What_day_is_it
 {
     static class Data
     {
+        #region Paths
+
         private static String AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         private static String CommonFolder = AppData + "/iskhakovt/What day is it/";
 
-        private static String _SettingsFile = CommonFolder + "settings";
-        private static String _DataFile = CommonFolder + "data";
+        private static String SettingsFile = CommonFolder + "settings";
+        private static String DataFile = CommonFolder + "data";
         private static String _LogFile = CommonFolder + "log";
-
-        public static String SettingsFile
-        {
-            get { return _SettingsFile; }
-        }
-
-        public static String DataFile
-        {
-            get { return _DataFile; }
-        }
 
         public static String LogFile
         {
             get { return _LogFile; }
         }
+
+        #endregion
+
+        #region Data
 
         private static Boolean _ImportantDateExists;
         private static Boolean _AnoterBirthdayExists;
@@ -89,6 +85,10 @@ namespace What_day_is_it
             get { return _Sex; }
         }
 
+        #endregion
+
+        #region Settings
+
         private static Boolean _ShowNotifications;
         private static Boolean _StartUpEnabled;
 
@@ -102,6 +102,8 @@ namespace What_day_is_it
             get { return _StartUpEnabled; }
         }
 
+        #endregion
+
         public static void checkDirectory()
         {
             if (!Directory.Exists(AppData))
@@ -114,6 +116,8 @@ namespace What_day_is_it
                 Directory.CreateDirectory(CommonFolder);
             }
         }
+
+        #region Settings IO
 
         public static void loadSettings()
         {
@@ -214,6 +218,10 @@ namespace What_day_is_it
             _StartUpEnabled = !_StartUpEnabled;
             saveSettings();
         }
+
+        #endregion
+
+        #region Data IO
 
         private class InDate
         {
@@ -351,15 +359,19 @@ namespace What_day_is_it
             loadData();
         }
 
+        #endregion
+
+        #region Common constants
+
         private static String NotificationsOn =     "NOTIFICATIONS ON";
         private static String NotificationsOff =    "NOTIFICATIONS OFF";
         private static String StartUpOn =           "STARTUP ON";
         private static String StartUpOff =          "STARTUP OFF";
 
-        private static String _BoyString =           "BOY";
-        private static String _GirtString =          "GIRL";
-        private static String _TrueString =          "TRUE";
-        private static String _FalseString =         "FALSE";
+        private static String _BoyString =          "BOY";
+        private static String _GirtString =         "GIRL";
+        private static String _TrueString =         "TRUE";
+        private static String _FalseString =        "FALSE";
 
         public static String BoyString
         {
@@ -383,5 +395,7 @@ namespace What_day_is_it
 
         private static Int32 minYear = 1900;
         private static Int32 maxYear = 2199;
+
+        #endregion
     }
 }
