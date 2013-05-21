@@ -42,13 +42,13 @@ namespace What_day_is_it
 
             if (Data.ShowNotifications && todayInfo.Text != String.Empty)
             {
-                Program.ApplicationWindow.addBalloon(Core.Today.ToLongDateString(), todayInfo.Text);
+                Core.ApplicationWindow.addBalloon(Core.Today.ToLongDateString(), todayInfo.Text);
             }
 
             getCloseInfo();
             changeAnyDay();
 
-            Program.ApplicationWindow.showBalloon();
+            Core.ApplicationWindow.showBalloon();
         }
 
         private enum Push { One, Two, Three, Done };
@@ -68,7 +68,7 @@ namespace What_day_is_it
                 {
                     if (Data.ShowNotifications)
                     {
-                        Program.ApplicationWindow.addBalloon(Vocabulary.soon() + find.ToLongDateString(), add);
+                        Core.ApplicationWindow.addBalloon(Vocabulary.soon() + find.ToLongDateString(), add);
                     }
 
                     add = find.ToLongDateString() + Environment.NewLine + add;

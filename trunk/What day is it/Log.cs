@@ -21,7 +21,7 @@ namespace What_day_is_it
 {
     static class Log
     {
-        public static void WriteLog(String message)
+        private static void WriteLog(String message)
         {
             StreamWriter writeLog = new StreamWriter(Data.LogFile, true);
             writeLog.Write(DateTime.Now.ToString() + Space + message);
@@ -30,6 +30,16 @@ namespace What_day_is_it
         }
 
         #region Logs
+
+        public static void WriteException(Exception ex)
+        {
+            WriteLog(ex.ToString());
+        }
+
+        public static void Launch()
+        {
+            WriteLog("New application is launched");
+        }
 
         public static void LogIn()
         {
@@ -53,7 +63,22 @@ namespace What_day_is_it
 
         public static void FirstSettingsOpened()
         {
-            WriteLog("First start master opened");
+            WriteLog("First Start window opened");
+        }
+
+        public static void SettingsFileNotFound()
+        {
+            WriteLog("Settings file was not found");
+        }
+
+        public static void DataFileNotFound()
+        {
+            WriteLog("Data file was not found");
+        }
+
+        public static void errorIO(String error)
+        {
+            WriteLog("IO" + Colon + Space + error);
         }
 
         public static void SettingsOpened()
@@ -88,6 +113,11 @@ namespace What_day_is_it
 
         #endregion
 
+        #region Constants
+
         private static String Space = " ";
+        private static String Colon = ":";
+
+        #endregion
     }
 }
