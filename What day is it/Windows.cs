@@ -44,7 +44,7 @@ namespace What_day_is_it
             {
                 Log.ApplicationOpened();
 
-                Program.ApplicationWindow.deleteBalloonInfo();
+                Core.ApplicationWindow.deleteBalloonInfo();
 
                 Window.updateData();
                 Window.Show();
@@ -88,7 +88,7 @@ namespace What_day_is_it
         {
             if (DateTime.Today != Core.Today && !settingOpened)
             {
-                Program.ApplicationWindow.deleteBalloonInfo();
+                Core.ApplicationWindow.deleteBalloonInfo();
                 Window.updateData();
             }
         }

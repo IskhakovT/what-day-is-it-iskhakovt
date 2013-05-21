@@ -22,6 +22,17 @@ namespace What_day_is_it
 {
     static class Core
     {
+        #region ApplicationWindow
+
+        private static CoreWindow _ApplicationWindow;
+
+        public static CoreWindow ApplicationWindow
+        {
+            get { return _ApplicationWindow; }
+        }
+
+        #endregion
+
         #region Today
 
         private static DateTime _Today;
@@ -42,6 +53,17 @@ namespace What_day_is_it
         }
 
         #endregion
+
+        public static void initialize()
+        {
+            setToday();
+
+            Data.checkDirectory();
+            Data.loadSettings();
+
+            _ApplicationWindow = new CoreWindow();
+            Windows.initializeTimer();
+        }
 
         public static Process runningInstance()
         {

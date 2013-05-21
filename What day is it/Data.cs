@@ -163,13 +163,15 @@ namespace What_day_is_it
                 }
                 catch (Exception ex)
                 {
-                    Log.WriteLog(ex.ToString());
+                    Log.errorIO(ex.Message);
 
                     resetSettings();
                 }
             }
             else
             {
+                Log.SettingsFileNotFound();
+
                 resetSettings();
             }
         }
@@ -295,7 +297,7 @@ namespace What_day_is_it
                 }
                 catch (Exception ex)
                 {
-                    Log.WriteLog(ex.ToString());
+                    Log.errorIO(ex.Message);
 
                     File.Delete(DataFile);
                     return false;
@@ -303,6 +305,8 @@ namespace What_day_is_it
             }
             else
             {
+                Log.DataFileNotFound();
+
                 return false;
             }
         }

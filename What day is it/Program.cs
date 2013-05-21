@@ -14,8 +14,8 @@
  *                                                                                              *
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
- *          Release date:   21st of May 2013                                                    *
- *          Version:        1.19.35                                                             *
+ *          Release date:   25th of May 2013                                                    *
+ *          Version:        1.20.35                                                             *
  *                                                                                              *
  *                                                                                              *
  *   Permission is hereby granted, free of charge, to any person obtaining a copy of this       *
@@ -57,6 +57,8 @@ namespace What_day_is_it
         {
             try
             {
+                Log.Launch();
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
@@ -71,13 +73,7 @@ namespace What_day_is_it
                     return;
                 }
 
-                Core.setToday();
-
-                Data.checkDirectory();
-                Data.loadSettings();
-
-                ApplicationWindow = new CoreWindow();
-                Windows.initializeTimer();
+                Core.initialize();
 
                 Boolean normalLog = Core.checkArgs(Args);
 
@@ -97,15 +93,13 @@ namespace What_day_is_it
                     {
                         Log.LogIn();
 
-                        ApplicationWindow.Start();
-                        Application.Run(ApplicationWindow);
+                        Core.ApplicationWindow.Start();
                     }
                     else
                     {
                         Log.LogInTray();
 
-                        ApplicationWindow.Start(CoreWindow.StartParameter.InTray);
-                        Application.Run(ApplicationWindow);
+                        Core.ApplicationWindow.Start(CoreWindow.StartParameter.InTray);
                     }
                 }
                 else
@@ -113,30 +107,18 @@ namespace What_day_is_it
                     Log.LogIn();
                     Log.FirstSettingsOpened();
 
-                    ApplicationWindow.Start(CoreWindow.StartParameter.FirstStart);
-                    Application.Run(ApplicationWindow);
+                    Core.ApplicationWindow.Start(CoreWindow.StartParameter.FirstStart);
                 }
 
+                Application.Run(Core.ApplicationWindow);
                 Log.LogOut();
             }
             catch (Exception ex)
             {
-                Log.WriteLog(ex.ToString());
+                Log.WriteException(ex);
                 MessageBox.Show(ex.Message, Vocabulary.criticalError(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.LogOut();
             }
         }
-
-        #region ApplicationWindow
-
-        private static CoreWindow _ApplicationWindow;
-
-        public static CoreWindow ApplicationWindow
-        {
-            get { return _ApplicationWindow; }
-            set { _ApplicationWindow = value; }
-        }
-
-        #endregion
     }
 }
