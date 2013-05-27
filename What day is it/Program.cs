@@ -14,7 +14,7 @@
  *                                                                                              *
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
- *          Release date:   25th of May 2013                                                    *
+ *          Release date:   1st of June 2013                                                    *
  *          Version:        1.20.35                                                             *
  *                                                                                              *
  *                                                                                              *
