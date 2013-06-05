@@ -46,7 +46,7 @@ namespace What_day_is_it
         {
             if (DateTime.Today.Year > maxTodayYear)
             {
-                throw new Exception("Today is too big date");
+                throw new Exception(LogResources.bigDate);
             }
 
             _Today = DateTime.Today;
@@ -106,8 +106,8 @@ namespace What_day_is_it
 
         #region Constants
 
-        private static String BadArgs = "Bad arguments:\n";
-        private static String StartTray = "startup";
+        private static String BadArgs = LogResources.badArguments + Environment.NewLine;
+        private static String StartTray = LogResources.stringStartUp;
 
         private static Int32 maxTodayYear = 2199;
 

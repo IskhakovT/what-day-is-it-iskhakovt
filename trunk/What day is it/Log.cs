@@ -24,7 +24,7 @@ namespace What_day_is_it
         private static void WriteLog(String message)
         {
             StreamWriter writeLog = new StreamWriter(Data.LogFile, true);
-            writeLog.Write(DateTime.Now.ToString() + Space + message);
+            writeLog.Write(DateTime.Now.ToString() + LogResources.Space + message);
             writeLog.WriteLine();
             writeLog.Close();
         }
@@ -38,85 +38,78 @@ namespace What_day_is_it
 
         public static void Launch()
         {
-            WriteLog("New application is launched");
+            WriteLog(LogResources.applicationLaunch);
         }
 
         public static void LogIn()
         {
-            WriteLog("Log in");
+            WriteLog(LogResources.logIn);
         }
 
         public static void LogInTray()
         {
-            WriteLog("Log in tray");
+            WriteLog(LogResources.logInTray);
         }
 
         public static void LogInTrayAborted()
         {
-            WriteLog("Log in tray aborted -- it is disabled");
+            WriteLog(LogResources.logInTrayAborted);
         }
 
         public static void LogAgain()
         {
-            WriteLog("Tried to log in again");
+            WriteLog(LogResources.tryLogAgain);
         }
 
         public static void FirstSettingsOpened()
         {
-            WriteLog("First Start window opened");
+            WriteLog(LogResources.firstSettingsOpened);
         }
 
         public static void SettingsFileNotFound()
         {
-            WriteLog("Settings file was not found");
+            WriteLog(LogResources.settingsNotFound);
         }
 
         public static void DataFileNotFound()
         {
-            WriteLog("Data file was not found");
+            WriteLog(LogResources.dataNotFound);
         }
 
         public static void errorIO(String error)
         {
-            WriteLog("IO" + Colon + Space + error);
+            WriteLog(LogResources.stringIO + LogResources.Colon + LogResources.Colon + error);
         }
 
         public static void SettingsOpened()
         {
-            WriteLog("Settings opened");
+            WriteLog(LogResources.settingsOpened);
         }
 
         public static void SaveButton()
         {
-            WriteLog("Saving settings");
+            WriteLog(LogResources.saveSettings);
         }
 
         public static void ApplicationOpened()
         {
-            WriteLog("Opened from tray");
+            WriteLog(LogResources.applicationOpened);
         }
 
         public static void ApplicationClosed()
         {
-            WriteLog("Closed in tray");
+            WriteLog(LogResources.applicationClosed);
         }
 
         public static void ApplicationExit()
         {
-            WriteLog("Closed in tray to exit");
+            WriteLog(LogResources.applicationExit);
         }
 
         public static void LogOut()
         {
-            WriteLog("Log out\n");
+            WriteLog(LogResources.logOut + Environment.NewLine);
         }
-
-        #endregion
-
-        #region Constants
-
-        private static String Space = " ";
-        private static String Colon = ":";
 
         #endregion
     }
