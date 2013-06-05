@@ -140,7 +140,7 @@ namespace What_day_is_it
                     else
                     {
                         readData.Close();
-                        throw new Exception("Bad input in settings file (notifications): " + notifications);
+                        throw new Exception(LogResources.FileNotificationsError + notifications);
                     }
 
                     String startUp = readData.ReadLine();
@@ -156,7 +156,7 @@ namespace What_day_is_it
                     else
                     {
                         readData.Close();
-                        throw new Exception("Bad input in settings file (startUp): " + startUp);
+                        throw new Exception(LogResources.FileStartUpError + startUp);
                     }
 
                     readData.Close();
@@ -274,7 +274,7 @@ namespace What_day_is_it
                     else
                     {
                         readData.Close();
-                        throw new Exception("Bad input in data file (sex): " + sex);
+                        throw new Exception(LogResources.Space + sex);
                     }
 
                     InDate GetDate;
@@ -326,7 +326,7 @@ namespace What_day_is_it
                 if (year < minYear || year > maxYear)
                 {
                     readData.Close();
-                    throw new Exception("Bad input in data file: bad input year " + year.ToString());
+                    throw new Exception(LogResources.FileYearError + year.ToString());
                 }
 
                 Int32 month = Convert.ToInt32(readData.ReadLine());
@@ -337,7 +337,7 @@ namespace What_day_is_it
                 if ((Core.Today - input).Days < 0)
                 {
                     readData.Close();
-                    throw new Exception("Bad input in data file: input date is after today");
+                    throw new Exception(LogResources.FileDateError);
                 }
 
                 return new InDate(input);
@@ -345,7 +345,7 @@ namespace What_day_is_it
             else
             {
                 readData.Close();
-                throw new Exception("Bad input in data file (exists): " + exists);
+                throw new Exception(LogResources.FileExistsError + exists);
             }
         }
 

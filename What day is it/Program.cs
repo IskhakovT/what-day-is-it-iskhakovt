@@ -14,7 +14,7 @@
  *                                                                                              *
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
- *          Release date:   1st of June 2013                                                    *
+ *          Release date:   7th of June 2013                                                    *
  *          Version:        1.20.35                                                             *
  *                                                                                              *
  *                                                                                              *
@@ -73,8 +73,6 @@ namespace What_day_is_it
                     return;
                 }
 
-                Core.initialize();
-
                 Boolean normalLog = Core.checkArgs(Args);
 
                 if (!normalLog && !Data.StartUpEnabled)
@@ -84,6 +82,8 @@ namespace What_day_is_it
 
                     return;
                 }
+
+                Core.initialize();
 
                 #endregion
 

@@ -59,5 +59,230 @@ namespace What_day_is_it {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Closed in tray.
+        /// </summary>
+        internal static string applicationClosed {
+            get {
+                return ResourceManager.GetString("applicationClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Closed in tray to exit.
+        /// </summary>
+        internal static string applicationExit {
+            get {
+                return ResourceManager.GetString("applicationExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на New application is launched.
+        /// </summary>
+        internal static string applicationLaunch {
+            get {
+                return ResourceManager.GetString("applicationLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Opened from tray.
+        /// </summary>
+        internal static string applicationOpened {
+            get {
+                return ResourceManager.GetString("applicationOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad arguments:.
+        /// </summary>
+        internal static string badArguments {
+            get {
+                return ResourceManager.GetString("badArguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Today is too big date.
+        /// </summary>
+        internal static string bigDate {
+            get {
+                return ResourceManager.GetString("bigDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на :.
+        /// </summary>
+        internal static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Data file was not found.
+        /// </summary>
+        internal static string dataNotFound {
+            get {
+                return ResourceManager.GetString("dataNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in data file: input date is after today.
+        /// </summary>
+        internal static string FileDateError {
+            get {
+                return ResourceManager.GetString("FileDateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in data file (exists):.
+        /// </summary>
+        internal static string FileExistsError {
+            get {
+                return ResourceManager.GetString("FileExistsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in settings file (notifications): .
+        /// </summary>
+        internal static string FileNotificationsError {
+            get {
+                return ResourceManager.GetString("FileNotificationsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in settings file (startUp): .
+        /// </summary>
+        internal static string FileStartUpError {
+            get {
+                return ResourceManager.GetString("FileStartUpError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in data file (year): .
+        /// </summary>
+        internal static string FileYearError {
+            get {
+                return ResourceManager.GetString("FileYearError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на First Start window opened.
+        /// </summary>
+        internal static string firstSettingsOpened {
+            get {
+                return ResourceManager.GetString("firstSettingsOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Log in.
+        /// </summary>
+        internal static string logIn {
+            get {
+                return ResourceManager.GetString("logIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Log in tray.
+        /// </summary>
+        internal static string logInTray {
+            get {
+                return ResourceManager.GetString("logInTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Log in tray aborted -- it is disabled.
+        /// </summary>
+        internal static string logInTrayAborted {
+            get {
+                return ResourceManager.GetString("logInTrayAborted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Log out.
+        /// </summary>
+        internal static string logOut {
+            get {
+                return ResourceManager.GetString("logOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Saving settings.
+        /// </summary>
+        internal static string saveSettings {
+            get {
+                return ResourceManager.GetString("saveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings file was not found.
+        /// </summary>
+        internal static string settingsNotFound {
+            get {
+                return ResourceManager.GetString("settingsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings opened.
+        /// </summary>
+        internal static string settingsOpened {
+            get {
+                return ResourceManager.GetString("settingsOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на  .
+        /// </summary>
+        internal static string Space {
+            get {
+                return ResourceManager.GetString("Space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на IO.
+        /// </summary>
+        internal static string stringIO {
+            get {
+                return ResourceManager.GetString("stringIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на startup.
+        /// </summary>
+        internal static string stringStartUp {
+            get {
+                return ResourceManager.GetString("stringStartUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tried to log in again.
+        /// </summary>
+        internal static string tryLogAgain {
+            get {
+                return ResourceManager.GetString("tryLogAgain", resourceCulture);
+            }
+        }
     }
 }
