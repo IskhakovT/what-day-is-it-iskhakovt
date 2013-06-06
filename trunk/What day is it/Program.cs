@@ -3,7 +3,7 @@
  *                                        What day is it?                                       *
  *                                                                                              *
  *                     This program was made to help people with relations                      *
- *                                 able to answer a silly question                              *
+ *                                    answer a silly question                                   *
  *                                       "What day is it?"                                      *
  *                                                                                              *
  *                                                                                              *
@@ -14,7 +14,7 @@
  *                                                                                              *
  *          Web site:       https://code.google.com/p/what-day-is-it-iskhakovt/                 *
  *                                                                                              *
- *          Release date:   7th of June 2013                                                    *
+ *          Release date:   6th of June 2013                                                    *
  *          Version:        1.20.35                                                             *
  *                                                                                              *
  *                                                                                              *
