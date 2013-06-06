@@ -78,7 +78,7 @@ namespace What_day_is_it
 
         public static void errorIO(String error)
         {
-            WriteLog(LogResources.stringIO + LogResources.Colon + LogResources.Colon + error);
+            WriteLog(LogResources.stringIO + error);
         }
 
         public static void SettingsOpened()

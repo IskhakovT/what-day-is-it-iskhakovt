@@ -274,7 +274,7 @@ namespace What_day_is_it
                     else
                     {
                         readData.Close();
-                        throw new Exception(LogResources.Space + sex);
+                        throw new Exception(LogResources.FileSexError + sex);
                     }
 
                     InDate GetDate;

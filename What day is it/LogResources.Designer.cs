@@ -115,15 +115,6 @@ namespace What_day_is_it {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на :.
-        /// </summary>
-        internal static string Colon {
-            get {
-                return ResourceManager.GetString("Colon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Data file was not found.
         /// </summary>
         internal static string dataNotFound {
@@ -156,6 +147,15 @@ namespace What_day_is_it {
         internal static string FileNotificationsError {
             get {
                 return ResourceManager.GetString("FileNotificationsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Bad input in data file (sex): .
+        /// </summary>
+        internal static string FileSexError {
+            get {
+                return ResourceManager.GetString("FileSexError", resourceCulture);
             }
         }
         
@@ -259,7 +259,7 @@ namespace What_day_is_it {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на IO.
+        ///   Ищет локализованную строку, похожую на IO: .
         /// </summary>
         internal static string stringIO {
             get {
