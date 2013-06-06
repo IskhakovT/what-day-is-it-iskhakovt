@@ -124,11 +124,6 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="VocabularyResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VocabularyResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Windows.cs" />
     <EmbeddedResource Include="CoreWindow.resx">
       <DependentUpon>CoreWindow.cs</DependentUpon>
@@ -153,10 +148,6 @@
     </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VocabularyResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>VocabularyResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="AppData EmptyFiles\data" />
     <None Include="AppData EmptyFiles\log" />
