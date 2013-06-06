@@ -135,9 +135,6 @@
   <data name="bigDate" xml:space="preserve">
     <value>Today is too big date</value>
   </data>
-  <data name="Colon" xml:space="preserve">
-    <value>:</value>
-  </data>
   <data name="dataNotFound" xml:space="preserve">
     <value>Data file was not found</value>
   </data>
@@ -180,16 +177,19 @@
   <data name="settingsOpened" xml:space="preserve">
     <value>Settings opened</value>
   </data>
-  <data name="Space" xml:space="preserve">
-    <value> </value>
-  </data>
   <data name="stringIO" xml:space="preserve">
-    <value>IO</value>
+    <value>IO: </value>
   </data>
   <data name="stringStartUp" xml:space="preserve">
     <value>startup</value>
   </data>
   <data name="tryLogAgain" xml:space="preserve">
     <value>Tried to log in again</value>
+  </data>
+  <data name="FileSexError" xml:space="preserve">
+    <value>Bad input in data file (sex): </value>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value> </value>
   </data>
 </root>
